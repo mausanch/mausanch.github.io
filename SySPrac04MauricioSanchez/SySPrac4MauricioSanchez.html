@@ -1,0 +1,797 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>publish1</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-07"><meta name="DC.source" content="publish1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><p>
+<IMG src="upiita-logo.png" width="100" height="95"/>
+<h2> INSTITUTO POLITÉCNICO NACIONAL </h2>
+<h2> UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS </h2>
+<h2> SEÑALES Y SISTEMAS </h2>
+<h1> Práctica 4 'Convolución y Correlación de señales en tiempo continuo' </h1>
+<p> Profesor: Dr. Rafael Martinez Martinez </p>
+<p> Integrantes del equipo: </p>
+<ol>
+<li>Gutierrez Montor Mauricio</li>
+<li>Sánchez Moreno Mauricio Fabián</li>
+<li>Vanegas López Eduardo</li>
+</ol>
+<p> Grupo 2TV1 </p>
+<h2> Objetivos:
+<ol>
+<li>Conocer métodos básicos de integración</li>
+<li>Manipulación de instrucciones en MATLAB</li>
+<li>Simular convoluciones y correlaciones de señales contínuas</li>
+</ol>
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introducci&oacute;n</a></li><li><a href="#18">Ejercicio 1</a></li><li><a href="#21">Ejercicio 2</a></li><li><a href="#25">Ejercicio 3</a></li><li><a href="#29">Ejercicio 4</a></li><li><a href="#33">Conclusi&oacute;n</a></li></ul></div><h2 id="1">Introducci&oacute;n</h2><p><b>M&eacute;todos num&eacute;ricos de integraci&oacute;n</b> El teorema fundamental del c&aacute;lculo (en una de sus versiones) se basa en encontrar una antiderivada <img src="publish1_eq08597826192214703288.png" alt="$F$">. Conociendo dicha antiderivada se puede encontrar la integral definida de otra funci&oacute;n <img src="publish1_eq17541265140556510133.png" alt="$f=F'$">. El teorema fundamental del c&aacute;lculo dice:</p><p>Si <img src="publish1_eq17663307419741296505.png" alt="$f(x)$"> es integrable, y <img src="publish1_eq05340592637791817947.png" alt="$\frac{dF(x)}{dx}=f(x)$">, entonces:</p><p><img src="publish1_eq16817905199163689891.png" alt="$$\int_{a}^{b}f(x)dx=F(b)-F(a)$$"></p><p>Sin embargo, a veces con los m&eacute;todos de integraci&oacute;n conocidos (cambio de variable, integraci&oacute;n por partes, fracciones parciales, sustituci&oacute;n trigonom&eacute;trica) no es posible hallar una antiderivada <img src="publish1_eq12375577266444837934.png" alt="$F(x)$">, sin embargo, el objetivo de la integraci&oacute;n es geom&eacute;tricamente hallar el &aacute;rea encerrada por la curva de la funci&oacute;n <img src="publish1_eq17663307419741296505.png" alt="$f(x)$"> la recta <img src="publish1_eq13813501899789052836.png" alt="$y=0$"> y las rectas <img src="publish1_eq17610628322324345933.png" alt="$x=a$"> y <img src="publish1_eq17143918320047229044.png" alt="$x=b$">. Y para ello se pueden utilizar diferentes m&eacute;todos, sin necesidad de hallar una antiderivada <img src="publish1_eq12375577266444837934.png" alt="$F(x)$">. Estos son los m&eacute;todos num&eacute;ricos.</p><p>Como ejemplo, tenemos la funci&oacute;n <img src="publish1_eq17947156488620266187.png" alt="$f(x)=e^{-x^{2}}$">. De acuerdo con el teorema fundamental del c&aacute;lculo,su integral de <img src="publish1_eq01858952829167753919.png" alt="$x=-1$"> a <img src="publish1_eq05225673900080308212.png" alt="$x=1$"> ser&iacute;a definida como:</p><p><img src="publish1_eq17632881593258709632.png" alt="$$\int_{-1}^{1}f(x)dx=\int_{-1}^{1}e^{-x^{2}}dx=F(1)-F(-1)$$"></p><p>con <img src="publish1_eq17361572515993448998.png" alt="$$ \frac{dF(x)}{dx}=f(x) $$"> .</p><p>Pero, &iquest;qui&eacute;n es <img src="publish1_eq12375577266444837934.png" alt="$F(x)$"> (la antiderivada)? La respuesta es que no existe como funci&oacute;n elemental; por tanto por los m&eacute;todos tradicionales no se puede hallar la integral de esta funci&oacute;n. Sin embargo el resultado de esta integral es aproximadamente 1.4936, determinandose por m&eacute;todos num&eacute;ricos.</p><p>La t&eacute;cnica que se utiliza para integrar en este caso es por medio de aproximaci&oacute;n a la funci&oacute;n mediante polinomios lo suficientemente parecidos (con el menos error posible) e integrarlos.</p><p><b>F&oacute;rmulas cerradas de Newton-Cotes</b></p><p>Supongamos que tenemos la siguiente integral <img src="publish1_eq11518683629591826499.png" alt="$\int_{a}^{b}f(x)dx$">, y no es posible encontrar la antiderivada <img src="publish1_eq12375577266444837934.png" alt="$F(x)$">. Una forma de integrar es mediante la aproximaci&oacute;n a <img src="publish1_eq17663307419741296505.png" alt="$f(x)$"> con un polinomio de interpolaci&oacute;n de Langrage. La teor&iacute;a de Lagrange dice que si <img src="publish1_eq17663307419741296505.png" alt="$f(x)$"> es integrable n veces, se puede hallar un polinomio que interpole a dicha funci&oacute;n (la corte n veces en un intervalo) m&aacute;s un t&eacute;rmino de error. Un polinomio de interpolaci&oacute;n de Lagrange se ve de la siguiente forma:</p><p><img src="publish1_eq15388428714948032814.png" alt="$$ f(x)=P(x)+\frac{f^{(n+1)}\xi (x)}{(n+1)!}(x-x_{0})(x-x_{1})\cdots&#xA;(x-x_{i}) $$"></p><p>con <img src="publish1_eq08570393432990432891.png" alt="$x\in [a,b]$"> y <img src="publish1_eq02777080431347765210.png" alt="$x_{i}\in [a,b]$"></p><p>Si se integra, se tiene la f&oacute;rmula cerrada de (n+1) puntos de Newton-Cotes. (Ver gr&aacute;fica). Donde por regla general:</p><div><ul><li><img src="publish1_eq01056269978726897643.png" alt="$x_{0}=a$"></li><li><img src="publish1_eq00331310322815514266.png" alt="$x_{n}=b$"></li><li><img src="publish1_eq14663764134541110566.png" alt="$h=\frac{b-a}{n}$"> -- (paso)</li><li><img src="publish1_eq07698017641151756797.png" alt="$x_{i}=x_{0}+ih$"> con <img src="publish1_eq15286095687738613400.png" alt="$i=0,1, \cdots ,n$"></li></ul></div><p>Dependiendo el grado n del polinomio, se obtiene lo que se conoce como Regla del trapecio (n=1) o primer f&oacute;rmula cerrada de Newton-Cotes, Regla de Simpson (n=2) o segunda f&oacute;rmula cerrada de Newton-Cotes, y Regla de los tres octavos de Simpson (n=3).</p><p><b>Regla del trapecio (n=1)</b></p><p><img src="publish1_eq14647083425008290344.png" alt="$$\int_{x_{0}}^{x_{1}}f(x)dx=\frac{h}{2}\left [ f(x_{0})+f(x_{1}) \right ]&#xA;-\left(\frac{h^{3}}{12}\right)f^{(2)}(\xi)$$"></p><p>con <img src="publish1_eq08603096453076732426.png" alt="$x_{0} <\xi < x_{1}$"></p><p>Donde:</p><div><ul><li><img src="publish1_eq01056269978726897643.png" alt="$x_{0}=a$"></li><li><img src="publish1_eq17811075688672136472.png" alt="$x_{1}=b$"></li><li><img src="publish1_eq04610332200503056764.png" alt="$h=b-a$"> -- (paso)</li><li><img src="publish1_eq16179145327951120899.png" alt="$x_{i}=a+i(b-a)$"> con <img src="publish1_eq11424036590008830977.png" alt="$i=0,1$"></li></ul></div><p><b>Regla de Simpson (n=2)</b></p><p><img src="publish1_eq00020618511167251742.png" alt="$$\int_{x_{0}}^{x_{2}}f(x)dx=\frac{h}{3}\left [ f(x_{0})+4f(x_{1})+f(x_{2}) \right ]&#xA;-\left(\frac{h^{5}}{90}\right)f^{(4)}(\xi)$$"></p><p>con <img src="publish1_eq15134870749431585011.png" alt="$x_{0} <\xi < x_{2}$"></p><p>Donde:</p><div><ul><li><img src="publish1_eq01056269978726897643.png" alt="$x_{0}=a$"></li><li><img src="publish1_eq00926360123370829447.png" alt="$x_{2}=b$"></li><li><img src="publish1_eq09636629550107206880.png" alt="$h=\frac{b-a}{2}$"> -- (paso)</li><li><img src="publish1_eq01242584725144056296.png" alt="$x_{i}=a+ih$"> con <img src="publish1_eq01823414822277661546.png" alt="$i=0,1,2$"></li><li><img src="publish1_eq10737469829672842624.png" alt="$x_{1}=a+\frac{b-a}{2}=\frac{b+a}{2}$"> con <img src="publish1_eq01823414822277661546.png" alt="$i=0,1,2$"></li></ul></div><p><b>Regla de los tres octavos de Simpson (n=3)</b></p><p><img src="publish1_eq14063740810588144764.png" alt="$$ \int_{x_{0}}^{x_{3}}f(x)dx=\frac{3}{8}h\left [ f(x_{0})+3f(x_{1})+3f(x_{2})+f(x_{3}) \right ]&#xA;-\left(\frac{3h^{5}}{80}\right)f^{(4)}(\xi)$$"></p><p>con <img src="publish1_eq01841757984722672205.png" alt="$x_{0} <\xi < x_{3}$"></p><p>Donde:</p><div><ul><li><img src="publish1_eq01056269978726897643.png" alt="$x_{0}=a$"></li><li><img src="publish1_eq18424229842987356267.png" alt="$x_{3}=b$"></li><li><img src="publish1_eq09593670058623902766.png" alt="$h=\frac{b-a}{3}$"> -- (paso)</li><li><img src="publish1_eq03782650388826138079.png" alt="$x_{i}=a+i\frac{b-a}{3}$"> con <img src="publish1_eq10052648702682174882.png" alt="$i=0,1,2,3$"></li><li><img src="publish1_eq16679957168420754673.png" alt="$x_{1}=a+\frac{b-a}{3}=\frac{2a+b}{3}$"></li><li><img src="publish1_eq05874132235121705144.png" alt="$x_{2}=a+\frac{2b-2a}{3}=\frac{2b+a}{3}$"></li></ul></div><p><b>EJEMPLO</b></p><p>Con la funci&oacute;n <img src="publish1_eq17947156488620266187.png" alt="$f(x)=e^{-x^{2}}$">, los tres m&eacute;todos anteriores se desarrollan as&iacute;;</p><p><i>Regla del trapecio</i></p><p><img src="publish1_eq13997870368203949111.png" alt="$$ \int_{-1}^{1}e^{-x^{2}}dx= \frac{2}{2} \left [ e^{-1}+e^{-1} \right ]&#xA;- \frac{8}{12} \left [ -2e^{-\xi ^{2}}(1-2\xi^{2}) \right ]&#xA;=0.7357+ \frac{4}{3}e^{-\xi^{2}}(1-2\xi^{2})$$"></p><p>con <img src="publish1_eq14768988684534621960.png" alt="$$ -1<\xi<1 $$"></p><p><i>Regla de Simpson</i></p><p><img src="publish1_eq16196918746991155570.png" alt="$$ \int_{-1}^{1}e^{-x^{2}}dx= \frac{1}{3} \left [ e^{-1}+4e^{0}+e^{-2}&#xA;\right ] - \frac{1}{90} \left [ -4e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}-3)&#xA;\right ] $$"></p><p><img src="publish1_eq11433309758718154000.png" alt="$$ = 1.5785+ \frac{2}{45}e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}-3)) $$"></p><p>con <img src="publish1_eq04540950445795077714.png" alt="$$ -1 <\xi <1 $$"></p><p><i>Regla de los tres octavos de Simpson</i></p><p><img src="publish1_eq17328443748818626115.png" alt="$$ \int_{-1}^{1}e^{-x^{2}}dx=\frac{3}{8}(\frac{2}{3})\left [&#xA;e^{-1}+3e^{-\frac{1}{4}}+3e^{-\frac{1}{4}}+e^{-1} \right ]&#xA;-\frac{3}{80}(\frac{2}{3})^{5}\left [ -4e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}&#xA;-3)\right ] $$"></p><p><img src="publish1_eq08584693120235332921.png" alt="$$ = 1.5261+\frac{8}{405}e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}-3))$$"></p><p>con <img src="publish1_eq04540950445795077714.png" alt="$$ -1 <\xi <1 $$"></p><p><b>F&oacute;rmulas cerradas de Newton-Cotes compuestas</b></p><p>Son una extensi&oacute;n de las f&oacute;rmulas cerradas de Newton-Cotes, en las que una funci&oacute;n se divide en m&uacute;ltiples intervalos y no solo uno, y a cada intervalo se le aplica la regla del trapecio, de Simpson, de tres octavos de Simpson, etc&eacute;tera.</p><p><b>Regla compuesta del trapecio</b></p><p><img src="publish1_eq18444710978998812391.png" alt="$$\int_{a}^{b}f(x)dx=\frac{h}{2}\left [&#xA;f(a)+2\sum_{j=1}^{n-1}f(x_{j})+f(b)\right ]&#xA;-\frac{b-a}{12}h^{2}f^{(2)}(\mu)$ con $\mu\in(a,b)$$"></p><div><ul><li><img src="publish1_eq08984225997457563733.png" alt="$n$"> - n&uacute;mero de subintervalos</li><li><img src="publish1_eq14663764134541110566.png" alt="$h=\frac{b-a}{n}$"> - paso</li><li><img src="publish1_eq06634274344176508331.png" alt="$x_{j}=a+jh\;\;j=0,1,2,\cdots,n$"></li></ul></div><p><b>Regla compuesta de Simpson</b></p><p><img src="publish1_eq00151081026128085419.png" alt="$$\int_{a}^{b}f(x)dx=\frac{h}{3}\left [ f(a)+2\sum_{j=1}^{(n/2)-1}f(x_{2j})&#xA;+4\sum_{j=1}^{n/2}f(x_{2j-1})+f(b) \right ]&#xA;-\left(\frac{b-a}{180}\right)h^{4}f^{(4)}(\mu)$ con $\mu\in(a,b)$$"></p><div><ul><li><img src="publish1_eq08984225997457563733.png" alt="$n$"> par - n&uacute;mero de subintervalos</li><li><img src="publish1_eq14663764134541110566.png" alt="$h=\frac{b-a}{n}$"> - paso</li><li><img src="publish1_eq01889445865402851942.png" alt="$x_{j}=a+jh\;\;j=0,1,\cdots,n$"></li></ul></div><p><i><b>Ejemplo</b></i></p><p>Continuando con el ejemplo anterior, tenemos lo siguiente:</p><p><i>Regla compuesta del trapecio</i></p><div><ul><li><img src="publish1_eq06713379182124035157.png" alt="$n=10$"></li><li><img src="publish1_eq16052271863658366773.png" alt="$h=\frac{1-(-1)}{10}=0.2$"></li><li><img src="publish1_eq16587241566254793901.png" alt="$x_{0}=-1;\;x_{1}=-0.8;\;x_{2}=-0.6;\cdots ;x_{9}=0.8;\;x_{10}=1$">$</li></ul></div><p><img src="publish1_eq06626062517182845684.png" alt="$$ \int_{-1}^{1}e^{-x^{2}}dx=\frac{0.2}{2}\left[&#xA;e^{-1}+2\sum_{j=1}^{n-1}e^{-x_{j}^{2}}+e^{-1}\right]-\frac{2}{12}(0.2)^{2}&#xA;\left[-2e^{-\mu^{2}}(1-2\mu^{2})\right] $$"></p><p><img src="publish1_eq08217468269614935903.png" alt="$$ =1.4887+0.0133e^{-\mu^{2}}(1-2\mu^{2});\; -1<\mu<1 $$"></p><p><i>Regla compuesta de Simpson</i></p><div><ul><li><img src="publish1_eq06713379182124035157.png" alt="$n=10$"></li><li><img src="publish1_eq16052271863658366773.png" alt="$h=\frac{1-(-1)}{10}=0.2$"></li><li><img src="publish1_eq16587241566254793901.png" alt="$x_{0}=-1;\;x_{1}=-0.8;\;x_{2}=-0.6;\cdots ;x_{9}=0.8;\;x_{10}=1$">$</li></ul></div><p><img src="publish1_eq16218841068759414081.png" alt="$$ \int_{-1}^{1}e^{-x^{2}}dx=\frac{0.2}{3}\left[&#xA;e^{-1}+2\sum_{j=1}^{4}e^{-x_{2j}^{2}}+4\sum_{j=1}^{5}e^{-(x_{2j}-1)^{2}}+e^{-1}&#xA;\right]-\frac{2}{180}(0.2)^{4}\left[-4e^{-4^{2}}(-4\mu^{4}+12\mu^{2}-3)\right]&#xA;$$"></p><p><img src="publish1_eq04023275266964442187.png" alt="$$ =1.4936+0.000071e^{-\mu^{2}}(-4\mu^{4}+2\mu^{2}-3);\; -1<\mu<1 $$"></p><p><b>Cuadratura gaussiana</b></p><p>Las f&oacute;rmulas cerradas de Newton-Cotes son solo f&oacute;rmulas de cuadratura, estas ten&iacute;an cierto grado de exactitud, dependiendo del grado del polinomio de interpolaci&oacute;n de Lagrange. En este caso se utilizan polinomios de Legendre para aproximar integrales de funciones que satisfagan cierta cantidad de error (el error sea el m&iacute;nimo) esto es lo que se conoce como cuadratura gaussiana. Los polinomios de Legendre se definen entre -1 y 1 y son</p><p><img src="publish1_eq14206520790503226904.png" alt="$$ \{ 1, x, x^{2}-\frac{1}{3}, x^{3}-\frac{3}{5}x, x^{4}-\frac{6}{7}x^{2}+\frac{3}{35}, \cdots \} $$"></p><p>Estos polinomios son interesantes, ya que en el intervalo -1 a 1 tienen cierta simetr&iacute;a y son ortogonales. Esto nos da el siguiente resultado:</p><p>Si tenemos:</p><div><ul><li><img src="publish1_eq15084836845238326044.png" alt="$P_{n}(x)$"> - polinomio de Legendre de grado n</li><li><img src="publish1_eq18278489966998892808.png" alt="$x_{1},x_{2},\cdots,x_{n}$"> ra&iacute;ces de <img src="publish1_eq15084836845238326044.png" alt="$P_{n}(x)$"></li><li><img src="publish1_eq13041821137325123775.png" alt="$$ c_{i}=\int_{-1}^{1}\prod_{j=1\neq i}^{n}\frac{x-x_{j}}{x_{i}-x_{j}}dx $$"></li></ul></div><p>Entonces:</p><div><ul><li><img src="publish1_eq07369394117540490994.png" alt="$\int_{-1}^{1}P(x)dx=\sum_{i=1}^{n}c_{i}P(x_{i})$"> y <img src="publish1_eq00441311847593852498.png" alt="$P(x)$"> con grado menor que <img src="publish1_eq15071035700124369223.png" alt="$2n$">.</li></ul></div><p>Resultado que se traduce en la aproximaci&oacute;n num&eacute;rica de una integral de -1 a 1 de cualquier funci&oacute;n:</p><p><img src="publish1_eq10339459279546201740.png" alt="$$\int_{-1}^{1}f(x)dx\approx\sum_{i=1}^{n}c_{i}f(x_{i})$$"></p><p>Los coeficientes <img src="publish1_eq10711459659918532023.png" alt="$c_{i}$"> y las ra&iacute;ces <img src="publish1_eq02319752440649908444.png" alt="$x_{i}$"> de los polinomios de Legendre, ya vienen especificados en tablas, y solo es necesario sustituir los valores en la f&oacute;rmula dependiendo de la funci&ograve;n que se quere integrar y del grado del polinomio de Legendre que se quiera trabajar.</p><p>Si se quiere integrar sobre cualquier intervalo, se necesita previamente realizar una equivalencia entre una integral definida en cualquier intervalo y una definida entre -1 y 1, y entonces calcular la aproximaci&oacute;n por cuadratura gaussiana a la nueva integral definida entre -1 y 1. Esta equivalencia es la siguiente y se halla mediante cambios de variable:</p><p><img src="publish1_eq10426846890033937052.png" alt="$$\int_{a}^{b}f(x)dx=\int_{-1}^{1}f\left ( \frac{(b-a)t+b+a}{2}\right )&#xA;\left (\frac{b-a}{2}\right ) dt$$"></p><p>Con el ejemplo que est&aacute;bamos tratando, la integraci&oacute;n de hace de -1 a 1, por lo tanto no se necesita ning&uacute;n ajuste. La integral quedar&iacute;a as&iacute; (utilizando las ra&iacute;ces y coeficientes de polinomios de Legendre escritos en tablas):</p><p>Para n=2:</p><p><img src="publish1_eq11739181388857621501.png" alt="$$\int_{-1}^{1}e^{-x^{2}}dx\approx&#xA;e^{-(0.5773502692)^{2}}+e^{-(-0.5773502692)^{2}}\approx 1.4331 $$"></p><p>Para n=3:</p><p><img src="publish1_eq07721013999135432197.png" alt="$$\int_{-1}^{1}e^{-x^{2}}dx\approx&#xA;0.5555555556e^{-(0.7745966692)^{2}}+0.8888888889+0.5555555556e^{-(-0.7745966692)^{2}}\approx&#xA;1.4986 $$"></p><h2 id="18">Ejercicio 1</h2><p>a)Anal&iacute;tico</p><p>
+<IMG src="anal1.png" width="350" height="120"/>
+</p><pre class="codeinput">figure
+subplot(1,3,1)
+syms <span class="string">t</span>
+x=piecewise(t&lt;0,0,0&lt;t&lt;1,-t+1,1&lt;t&lt;2,t-1,t&gt;2,0);
+fplot(x,[-1,3],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'x(t)'</span>)
+axis([-1 3.6 -2 2]);
+subplot(1,3,2)
+h=piecewise(t&lt;0,0,0&lt;t&lt;1,1,t&gt;1,0);
+fplot(h,[-1,3],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'h(t)'</span>)
+axis([-1 3.6 -2 2]);
+t1=0:0.01:1;
+t2=1:0.01:2;
+t3=2:0.01:3;
+subplot(1,3,3)
+plot(t1,(((-t1.^2)/2)+t1));
+hold <span class="string">on</span>
+plot(t2,(t2.^2)-(3.*t2)+(5/2));
+plot(t3,((-t3.^2)/2)+(2.*t3)-(3/2));
+grid <span class="string">on</span>
+title(<span class="string">'x(t)*h(t)'</span>)
+axis([-1 4 -0.1 0.6]);
+</pre><img vspace="5" hspace="5" src="publish1_01.png" alt=""> <pre>b)Calculado por MATLAB</pre><pre class="codeinput">x=@(t)(-t+1).*(t&gt;=0 &amp; t&lt;1)+(t-1).*(t&gt;=1 &amp; t&lt;2);
+h=@(t)(1).*(t&gt;=0 &amp; t&lt;1);
+convconm(x,h);
+axis([-1 4 -1 2]);
+</pre><img vspace="5" hspace="5" src="publish1_02.png" alt=""> <h2 id="21">Ejercicio 2</h2><pre>a)Anal&iacute;tico</pre><p>
+<IMG src="anal2.png" width="300" height="200"/>
+</p><pre class="codeinput">figure
+subplot(1,3,1)
+syms <span class="string">t</span>
+x=piecewise(t&lt;0,0,0&lt;t&lt;1,t,1&lt;t&lt;2,1,t&gt;2,0);
+fplot(x,[-1,3],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'x(t)'</span>)
+axis([-1 3.6 -1 1.5]);
+subplot(1,3,2)
+h=piecewise(t&lt;1,0,1&lt;t&lt;3,1,t&gt;3,0);
+fplot(h,[-1,4],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'h(t)'</span>)
+axis([-1 4 -1 1.5]);
+t1=1:0.01:2;
+t2=2:0.01:3;
+t3=3:0.01:4;
+t4=4:0.01:5;
+subplot(1,3,3)
+plot(t1,(((t1.^2)/2)-t1+(1/2)));
+hold <span class="string">on</span>
+plot(t2,(t2)-(3/2));
+plot(t3,((-t3.^2)/2)+(3.*t3)-(3));
+plot(t4, 5-(t4));
+grid <span class="string">on</span>
+title(<span class="string">'x(t)*h(t)'</span>)
+axis([-1 6 -0.1 1.5]);
+</pre><img vspace="5" hspace="5" src="publish1_03.png" alt=""> <pre>b)Calculado por MATLAB</pre><pre class="codeinput">x=@(t)(1).*(t&gt;=1 &amp; t&lt;3);
+h=@(t)(t).*(t&gt;=0 &amp; t&lt;1)+(1).*(t&gt;=1 &amp; t&lt;2);
+convconm(x,h);
+axis([0 6 -1 2]);
+</pre><img vspace="5" hspace="5" src="publish1_04.png" alt=""> <h2 id="25">Ejercicio 3</h2><pre>a)Anal&iacute;tico</pre><p>
+<IMG src="anal3.png" width="250" height="150"/>
+</p><pre class="codeinput">figure
+subplot(1,3,1)
+syms <span class="string">t</span>
+x=piecewise(t&lt;0,0,0&lt;=t&lt;3,1,3&lt;t&lt;=4,-1,t&gt;4,0);
+fplot(x,[-0.25,4.25],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'x(t)'</span>)
+axis([-1 6 -1.5 1.25]);
+subplot(1,3,2)
+h=piecewise(t&lt;0,0,0&lt;=t&lt;3,1,3&lt;t&lt;=4,-1,t&gt;4,0);
+fplot(h,[-0.25,4.25],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'x(t)'</span>)
+axis([-1 6 -1.5 1.25]);
+t1=-4:0.01:-3;
+t2=-3:0.01:-1;
+t3=-1:0.01:0;
+t4=0:0.01:1;
+t5=1:0.01:3;
+t6=3:0.01:4;
+subplot(1,3,3)
+plot(t1,(-t1-4))
+hold <span class="string">on</span>
+plot(t2,(t2+2))
+plot(t3,(3*t3+4))
+plot(t4,(-3*t4+4))
+plot(t5,(-t5+2))
+plot(t6,(t6-4))
+grid <span class="string">on</span>
+title(<span class="string">'Autocorrelaci&oacute;n x(t)*x(-t)'</span>)
+axis([-4.75 4.75 -1.25 4.25]);
+</pre><img vspace="5" hspace="5" src="publish1_05.png" alt=""> <pre>b)Calculado por MATLAB</pre><pre class="codeinput">g = @(t)((t&gt;=0&amp;t&lt;=3)-2.*(t&gt;=3&amp;t&lt;=4)+(t&gt;=3&amp;t&lt;=4))
+f = @(t) -(-(t&lt;=0&amp;t&gt;=-3)+2.*(t&lt;=-3&amp;t&gt;=-4)-(t&lt;=-3&amp;t&gt;=-4))
+convconm(g,f)
+</pre><pre class="codeoutput">
+g =
+
+  function_handle with value:
+
+    @(t)((t&gt;=0&amp;t&lt;=3)-2.*(t&gt;=3&amp;t&lt;=4)+(t&gt;=3&amp;t&lt;=4))
+
+
+f =
+
+  function_handle with value:
+
+    @(t)-(-(t&lt;=0&amp;t&gt;=-3)+2.*(t&lt;=-3&amp;t&gt;=-4)-(t&lt;=-3&amp;t&gt;=-4))
+
+</pre><img vspace="5" hspace="5" src="publish1_06.png" alt=""> <h2 id="29">Ejercicio 4</h2><pre>a)Anal&iacute;tico</pre><p>
+<IMG src="anal4.png" width="300" height="200"/>
+</p><pre class="codeinput">figure
+subplot(1,3,1)
+syms <span class="string">t</span>
+x=piecewise(t&lt;0,0,0&lt;t&lt;3,1,3&lt;t&lt;4,-1,t&gt;4,0);
+fplot(x,[-2,6],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'x(t)'</span>)
+axis([-1.5 5 -1.5 1.5]);
+subplot(1,3,2)
+h=piecewise(t&lt;0,0,0&lt;t&lt;2,1,2&lt;t&lt;4,-1,t&gt;4,0);
+fplot(h,[-2,6],<span class="string">'r'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'h(t)'</span>)
+axis([-1.5 5 -1.5 1.5]);
+t1=-4:0.01:-3;
+t2=-3:0.01:-2;
+t3=-2:0.01:-1;
+t4=-1:0.01:0;
+t5=-0:0.01:1;
+t6=1:0.01:2;
+t7=2:0.01:4;
+subplot(1,3,3)
+hold <span class="string">on</span>
+plot(t1,-t1-4);
+plot(t2,t2+2);
+plot(t3,3.*t3+6);
+plot(t4,-t4+2);
+plot(t5,-3.*t5+2 );
+plot(t6,-t6);
+plot(t7,t7-4);
+grid <span class="string">on</span>
+title(<span class="string">'Correlaci&oacute;n'</span>)
+axis([-5 5 -2.25 3.25 ]);
+</pre><img vspace="5" hspace="5" src="publish1_07.png" alt=""> <pre>b)Calculado por MATLAB</pre><pre class="codeinput">g = @(t)((t&gt;=0&amp;t&lt;=2)-2.*(t&gt;=2&amp;t&lt;2)-(t&gt;=2&amp;t&lt;=4))
+f = @(t) -(-(t&lt;=0&amp;t&gt;=-3)+2.*(t&lt;=-3&amp;t&gt;=-4)-(t&lt;=-3&amp;t&gt;=-4))
+convconm(g,f)
+axis([-5 5 -2.25 3.25]);
+</pre><pre class="codeoutput">
+g =
+
+  function_handle with value:
+
+    @(t)((t&gt;=0&amp;t&lt;=2)-2.*(t&gt;=2&amp;t&lt;2)-(t&gt;=2&amp;t&lt;=4))
+
+
+f =
+
+  function_handle with value:
+
+    @(t)-(-(t&lt;=0&amp;t&gt;=-3)+2.*(t&lt;=-3&amp;t&gt;=-4)-(t&lt;=-3&amp;t&gt;=-4))
+
+</pre><img vspace="5" hspace="5" src="publish1_08.png" alt=""> <h2 id="33">Conclusi&oacute;n</h2><pre>Al termino de esta practica podemos observar el desarrollo de las convoluciones y correlaciones llevadas a cabo con anterioridad,
+la idea fue utilizar el software "MATLAB" para poder ver realmente el comportamiento de las se&ntilde;ales resultantes a
+partir de sus graficas, con ello nos dimos a la tarea de implementar nuevas instrucciones que desconociamos de matlab donde
+nos simulba con movimiento el paso de la se&ntilde;al movil con la estatica formando al momento la convolucion o correlacion, dicha
+funcion se nombro "convcomm" y nos puede ser util para trabajos futuros para comprobar con precision futuras operaciones,
+y a sea convolucion o correlacion, de igual manera lo corroboramos con las graficas que se hicieron con los resultados analiticos.
+De igual manera conocimos formas distintas de allar area bajo la curva no por metodos de integracion, si no por metodos
+numericos, como ejemplo las F&oacute;rmulas cerradas de Newton-Cotes que consiste en Una forma de integrar es
+mediante la aproximaci&oacute;n a $f(x)$ con un polinomio de interpolaci&oacute;n de Langrage. La teor&iacute;a de Lagrange dice que si $f(x)$ es integrable n veces,
+se puede hallar un polinomio que interpole a dicha funci&oacute;n  m&aacute;s un t&eacute;rmino de error. y la regla del trapecio.</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+% <html>
+% <IMG src="upiita-logo.png" width="100" height="95"/>
+% <h2> INSTITUTO POLITÉCNICO NACIONAL </h2>
+% <h2> UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS </h2>
+% <h2> SEÑALES Y SISTEMAS </h2>
+% <h1> Práctica 4 'Convolución y Correlación de señales en tiempo continuo' </h1>
+% <p> Profesor: Dr. Rafael Martinez Martinez </p>
+% <p> Integrantes del equipo: </p>
+% <ol>
+% <li>Gutierrez Montor Mauricio</li>
+% <li>Sánchez Moreno Mauricio Fabián</li>
+% <li>Vanegas López Eduardo</li>
+% </ol>
+% <p> Grupo 2TV1 </p>
+% <h2> Objetivos:
+% <ol>
+% <li>Conocer métodos básicos de integración</li>
+% <li>Manipulación de instrucciones en MATLAB</li>
+% <li>Simular convoluciones y correlaciones de señales contínuas</li>
+% </ol>
+% </html>
+
+
+
+%% Introducción
+% *Métodos numéricos de integración*
+% El teorema fundamental del cálculo (en una de sus versiones) se basa en
+% encontrar una antiderivada $F$. Conociendo dicha antiderivada se puede
+% encontrar la integral definida de otra función $f=F'$. El teorema
+% fundamental del cálculo dice:
+%
+% Si $f(x)$ es integrable, y $\frac{dF(x)}{dx}=f(x)$, entonces:
+%
+% $$\int_{a}^{b}f(x)dx=F(b)-F(a)$$
+%
+% Sin embargo, a veces con los métodos de integración conocidos (cambio de
+% variable, integración por partes, fracciones parciales, sustitución
+% trigonométrica) no es posible hallar una antiderivada $F(x)$, sin embargo,
+% el objetivo de la integración es geométricamente hallar el área encerrada
+% por la curva de la función $f(x)$ la recta $y=0$ y las rectas $x=a$ y $x=b$. Y para ello se pueden utilizar diferentes
+% métodos, sin necesidad de hallar una antiderivada $F(x)$. Estos son los
+% métodos numéricos.
+%
+% Como ejemplo, tenemos la función $f(x)=e^{-x^{2}}$. De acuerdo con el
+% teorema fundamental del cálculo,su integral de $x=-1$ a $x=1$ sería definida
+% como: 
+%
+% $$\int_{-1}^{1}f(x)dx=\int_{-1}^{1}e^{-x^{2}}dx=F(1)-F(-1)$$
+% 
+% con $$ \frac{dF(x)}{dx}=f(x) $$ .
+% 
+% Pero, ¿quién es $F(x)$ (la antiderivada)? La
+% respuesta es que no existe como función elemental; por tanto por los
+% métodos tradicionales no se puede hallar la integral de esta función. Sin
+% embargo el resultado de esta integral es aproximadamente 1.4936,
+% determinandose por métodos numéricos.
+%
+% La técnica que se utiliza para integrar en este caso es por medio de
+% aproximación a la función mediante polinomios lo suficientemente
+% parecidos (con el menos error posible) e integrarlos. 
+%% 
+% *Fórmulas cerradas de Newton-Cotes*
+%
+% Supongamos que tenemos la siguiente integral $\int_{a}^{b}f(x)dx$, y no
+% es posible encontrar la antiderivada $F(x)$. Una forma de integrar es
+% mediante la aproximación a $f(x)$ con un polinomio de interpolación de
+% Langrage. La teoría de Lagrange dice que si $f(x)$ es integrable n veces,
+% se puede hallar un polinomio que interpole a dicha función (la corte n
+% veces en un intervalo) más un término de error. Un polinomio de
+% interpolación de Lagrange se ve de la siguiente forma:
+%
+% $$ f(x)=P(x)+\frac{f^{(n+1)}\xi (x)}{(n+1)!}(x-x_{0})(x-x_{1})\cdots
+% (x-x_{i}) $$
+%
+% con $x\in [a,b]$ y $x_{i}\in [a,b]$
+%
+%
+% Si se integra, se tiene la fórmula cerrada de (n+1) puntos de
+% Newton-Cotes. (Ver gráfica). Donde por regla general:
+%
+% * $x_{0}=a$
+% * $x_{n}=b$
+% * $h=\frac{b-a}{n}$ REPLACE_WITH_DASH_DASH (paso)
+% * $x_{i}=x_{0}+ih$ con $i=0,1, \cdots ,n$
+%
+% Dependiendo el grado n del polinomio, se
+% obtiene lo que se conoce como Regla del trapecio (n=1) o primer fórmula cerrada de Newton-Cotes, Regla de Simpson
+% (n=2) o segunda fórmula cerrada de Newton-Cotes, y Regla de los tres
+% octavos de Simpson (n=3).
+%%
+% *Regla del trapecio (n=1)*
+%
+% $$\int_{x_{0}}^{x_{1}}f(x)dx=\frac{h}{2}\left [ f(x_{0})+f(x_{1}) \right ]
+% -\left(\frac{h^{3}}{12}\right)f^{(2)}(\xi)$$
+%
+% con $x_{0} <\xi < x_{1}$
+%
+% Donde:
+%
+% * $x_{0}=a$
+% * $x_{1}=b$
+% * $h=b-a$ REPLACE_WITH_DASH_DASH (paso)
+% * $x_{i}=a+i(b-a)$ con $i=0,1$
+%%
+% *Regla de Simpson (n=2)*
+%
+% $$\int_{x_{0}}^{x_{2}}f(x)dx=\frac{h}{3}\left [ f(x_{0})+4f(x_{1})+f(x_{2}) \right ]
+% -\left(\frac{h^{5}}{90}\right)f^{(4)}(\xi)$$
+%
+% con $x_{0} <\xi < x_{2}$ 
+%
+% Donde:
+%
+% * $x_{0}=a$
+% * $x_{2}=b$
+% * $h=\frac{b-a}{2}$ REPLACE_WITH_DASH_DASH (paso)
+% * $x_{i}=a+ih$ con $i=0,1,2$
+% * $x_{1}=a+\frac{b-a}{2}=\frac{b+a}{2}$ con $i=0,1,2$
+%%
+% *Regla de los tres octavos de Simpson (n=3)*
+%
+% $$ \int_{x_{0}}^{x_{3}}f(x)dx=\frac{3}{8}h\left [ f(x_{0})+3f(x_{1})+3f(x_{2})+f(x_{3}) \right ]
+% -\left(\frac{3h^{5}}{80}\right)f^{(4)}(\xi)$$
+%
+% con $x_{0} <\xi < x_{3}$ 
+%
+% Donde:
+%
+% * $x_{0}=a$
+% * $x_{3}=b$
+% * $h=\frac{b-a}{3}$ REPLACE_WITH_DASH_DASH (paso)
+% * $x_{i}=a+i\frac{b-a}{3}$ con $i=0,1,2,3$
+% * $x_{1}=a+\frac{b-a}{3}=\frac{2a+b}{3}$
+% * $x_{2}=a+\frac{2b-2a}{3}=\frac{2b+a}{3}$
+%%
+% *EJEMPLO*
+%
+% Con la función $f(x)=e^{-x^{2}}$, los tres métodos anteriores se
+% desarrollan así;
+%% 
+% _Regla del trapecio_
+%%
+%
+% $$ \int_{-1}^{1}e^{-x^{2}}dx= \frac{2}{2} \left [ e^{-1}+e^{-1} \right ]
+% - \frac{8}{12} \left [ -2e^{-\xi ^{2}}(1-2\xi^{2}) \right ] 
+% =0.7357+ \frac{4}{3}e^{-\xi^{2}}(1-2\xi^{2})$$ 
+%
+% con $$ -1<\xi<1 $$
+%
+%%
+% _Regla de Simpson_
+%%
+%
+% $$ \int_{-1}^{1}e^{-x^{2}}dx= \frac{1}{3} \left [ e^{-1}+4e^{0}+e^{-2} 
+% \right ] - \frac{1}{90} \left [ -4e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}-3)
+% \right ] $$ 
+%
+% $$ = 1.5785+ \frac{2}{45}e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}-3)) $$ 
+%
+% con $$ -1 <\xi <1 $$
+%
+%%
+% _Regla de los tres octavos de Simpson_
+%%
+%
+% $$ \int_{-1}^{1}e^{-x^{2}}dx=\frac{3}{8}(\frac{2}{3})\left [ 
+% e^{-1}+3e^{-\frac{1}{4}}+3e^{-\frac{1}{4}}+e^{-1} \right ] 
+% -\frac{3}{80}(\frac{2}{3})^{5}\left [ -4e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}
+% -3)\right ] $$
+%
+% $$ = 1.5261+\frac{8}{405}e^{-\xi^{2}}(-4\xi^{4}+12\xi^{2}-3))$$ 
+%
+% con $$ -1 <\xi <1 $$
+%
+%%
+% *Fórmulas cerradas de Newton-Cotes compuestas*
+%
+% Son una extensión de las fórmulas cerradas de Newton-Cotes, en las que
+% una función se divide en múltiples intervalos y no solo uno, y a cada
+% intervalo se le aplica la regla del trapecio, de Simpson, de tres octavos
+% de Simpson, etcétera.
+%
+%%
+% *Regla compuesta del trapecio*
+%
+% $$\int_{a}^{b}f(x)dx=\frac{h}{2}\left [
+% f(a)+2\sum_{j=1}^{n-1}f(x_{j})+f(b)\right ]
+% -\frac{b-a}{12}h^{2}f^{(2)}(\mu)$ con $\mu\in(a,b)$$
+%
+% * $n$ - número de subintervalos
+% * $h=\frac{b-a}{n}$ - paso
+% * $x_{j}=a+jh\;\;j=0,1,2,\cdots,n$
+%
+%%
+% *Regla compuesta de Simpson*
+%
+% $$\int_{a}^{b}f(x)dx=\frac{h}{3}\left [ f(a)+2\sum_{j=1}^{(n/2)-1}f(x_{2j})
+% +4\sum_{j=1}^{n/2}f(x_{2j-1})+f(b) \right ]
+% -\left(\frac{b-a}{180}\right)h^{4}f^{(4)}(\mu)$ con $\mu\in(a,b)$$
+%
+% * $n$ par - número de subintervalos
+% * $h=\frac{b-a}{n}$ - paso
+% * $x_{j}=a+jh\;\;j=0,1,\cdots,n$
+%
+%%
+% _*Ejemplo*_
+%
+% Continuando con el ejemplo anterior, tenemos lo siguiente:
+%
+% _Regla compuesta del trapecio_
+%
+% * $n=10$
+% * $h=\frac{1-(-1)}{10}=0.2$
+% * $x_{0}=-1;\;x_{1}=-0.8;\;x_{2}=-0.6;\cdots ;x_{9}=0.8;\;x_{10}=1$$
+%
+% $$ \int_{-1}^{1}e^{-x^{2}}dx=\frac{0.2}{2}\left[
+% e^{-1}+2\sum_{j=1}^{n-1}e^{-x_{j}^{2}}+e^{-1}\right]-\frac{2}{12}(0.2)^{2}
+% \left[-2e^{-\mu^{2}}(1-2\mu^{2})\right] $$
+%
+% $$ =1.4887+0.0133e^{-\mu^{2}}(1-2\mu^{2});\; -1<\mu<1 $$
+%
+% _Regla compuesta de Simpson_
+%
+% * $n=10$
+% * $h=\frac{1-(-1)}{10}=0.2$
+% * $x_{0}=-1;\;x_{1}=-0.8;\;x_{2}=-0.6;\cdots ;x_{9}=0.8;\;x_{10}=1$$
+%
+% $$ \int_{-1}^{1}e^{-x^{2}}dx=\frac{0.2}{3}\left[
+% e^{-1}+2\sum_{j=1}^{4}e^{-x_{2j}^{2}}+4\sum_{j=1}^{5}e^{-(x_{2j}-1)^{2}}+e^{-1}
+% \right]-\frac{2}{180}(0.2)^{4}\left[-4e^{-4^{2}}(-4\mu^{4}+12\mu^{2}-3)\right]
+% $$
+%
+% $$ =1.4936+0.000071e^{-\mu^{2}}(-4\mu^{4}+2\mu^{2}-3);\; -1<\mu<1 $$
+%
+%%
+% *Cuadratura gaussiana*
+%
+% Las fórmulas cerradas de Newton-Cotes son solo fórmulas de cuadratura,
+% estas tenían cierto grado de exactitud, dependiendo del grado del
+% polinomio de interpolación de Lagrange.
+% En este caso se utilizan polinomios de Legendre para aproximar integrales
+% de funciones que satisfagan cierta cantidad de error (el error sea el
+% mínimo) esto es lo que se conoce como cuadratura gaussiana.
+% Los polinomios de Legendre se definen entre -1 y 1 y son 
+%
+% $$ \{ 1, x, x^{2}-\frac{1}{3}, x^{3}-\frac{3}{5}x, x^{4}-\frac{6}{7}x^{2}+\frac{3}{35}, \cdots \} $$
+%
+% Estos polinomios son interesantes, ya que en el intervalo -1 a 1 tienen
+% cierta simetría y son ortogonales. Esto nos da el siguiente resultado:
+%
+% Si tenemos:
+% 
+% * $P_{n}(x)$ - polinomio de Legendre de grado n
+% * $x_{1},x_{2},\cdots,x_{n}$ raíces de $P_{n}(x)$
+% * $$ c_{i}=\int_{-1}^{1}\prod_{j=1\neq i}^{n}\frac{x-x_{j}}{x_{i}-x_{j}}dx $$
+%
+% Entonces:
+%
+% * $\int_{-1}^{1}P(x)dx=\sum_{i=1}^{n}c_{i}P(x_{i})$ y $P(x)$ con grado
+% menor que $2n$.
+%
+% Resultado que se traduce en la aproximación numérica de una integral de -1 a 1 de
+% cualquier función:
+%
+% $$\int_{-1}^{1}f(x)dx\approx\sum_{i=1}^{n}c_{i}f(x_{i})$$
+%
+% Los coeficientes $c_{i}$ y las raíces $x_{i}$ de los polinomios de
+% Legendre, ya vienen especificados en tablas, y solo es necesario
+% sustituir los valores en la fórmula dependiendo de la funciòn que se
+% quere integrar y del grado del polinomio de Legendre que se quiera
+% trabajar.
+%
+% Si se quiere integrar sobre cualquier intervalo, se necesita previamente
+% realizar una equivalencia entre una integral definida en cualquier
+% intervalo y una definida entre -1 y 1, y entonces calcular la
+% aproximación por cuadratura gaussiana a la nueva integral definida entre
+% -1 y 1. Esta equivalencia es la siguiente y se halla mediante cambios de
+% variable:
+%
+% $$\int_{a}^{b}f(x)dx=\int_{-1}^{1}f\left ( \frac{(b-a)t+b+a}{2}\right )
+% \left (\frac{b-a}{2}\right ) dt$$
+%
+% Con el ejemplo que estábamos tratando, la integración de hace de -1 a 1,
+% por lo tanto no se necesita ningún ajuste. La integral quedaría así
+% (utilizando las raíces y coeficientes de polinomios de Legendre escritos
+% en tablas):
+%
+% Para n=2:
+%
+% $$\int_{-1}^{1}e^{-x^{2}}dx\approx
+% e^{-(0.5773502692)^{2}}+e^{-(-0.5773502692)^{2}}\approx 1.4331 $$
+%
+% Para n=3:
+%
+% $$\int_{-1}^{1}e^{-x^{2}}dx\approx
+% 0.5555555556e^{-(0.7745966692)^{2}}+0.8888888889+0.5555555556e^{-(-0.7745966692)^{2}}\approx
+% 1.4986 $$
+%
+
+%% Ejercicio 1
+% a)Analítico
+%
+
+
+%%
+% <html>
+% <IMG src="anal1.png" width="350" height="120"/>
+% </html>
+
+
+
+figure
+subplot(1,3,1)
+syms t
+x=piecewise(t<0,0,0<t<1,-t+1,1<t<2,t-1,t>2,0);
+fplot(x,[-1,3],'r')
+grid on
+title('x(t)')
+axis([-1 3.6 -2 2]);
+subplot(1,3,2)
+h=piecewise(t<0,0,0<t<1,1,t>1,0);
+fplot(h,[-1,3],'r')
+grid on
+title('h(t)')
+axis([-1 3.6 -2 2]);
+t1=0:0.01:1;
+t2=1:0.01:2;
+t3=2:0.01:3;
+subplot(1,3,3)
+plot(t1,(((-t1.^2)/2)+t1));
+hold on
+plot(t2,(t2.^2)-(3.*t2)+(5/2));
+plot(t3,((-t3.^2)/2)+(2.*t3)-(3/2));
+grid on
+title('x(t)*h(t)')
+axis([-1 4 -0.1 0.6]);
+%%
+% 
+%  b)Calculado por MATLAB
+%  
+% 
+
+x=@(t)(-t+1).*(t>=0 & t<1)+(t-1).*(t>=1 & t<2);
+h=@(t)(1).*(t>=0 & t<1);
+convconm(x,h);
+axis([-1 4 -1 2]);
+%% Ejercicio 2
+%%
+% 
+%  a)Analítico
+%  
+% 
+ 
+%%
+% <html>
+% <IMG src="anal2.png" width="300" height="200"/>
+% </html>
+
+
+
+figure
+subplot(1,3,1)
+syms t
+x=piecewise(t<0,0,0<t<1,t,1<t<2,1,t>2,0);
+fplot(x,[-1,3],'r')
+grid on
+title('x(t)')
+axis([-1 3.6 -1 1.5]);
+subplot(1,3,2)
+h=piecewise(t<1,0,1<t<3,1,t>3,0);
+fplot(h,[-1,4],'r')
+grid on
+title('h(t)')
+axis([-1 4 -1 1.5]);
+t1=1:0.01:2;
+t2=2:0.01:3;
+t3=3:0.01:4;
+t4=4:0.01:5;
+subplot(1,3,3)
+plot(t1,(((t1.^2)/2)-t1+(1/2)));
+hold on
+plot(t2,(t2)-(3/2));
+plot(t3,((-t3.^2)/2)+(3.*t3)-(3));
+plot(t4, 5-(t4));
+grid on
+title('x(t)*h(t)')
+axis([-1 6 -0.1 1.5]);
+
+%%
+% 
+%  b)Calculado por MATLAB
+% 
+% 
+x=@(t)(1).*(t>=1 & t<3);
+h=@(t)(t).*(t>=0 & t<1)+(1).*(t>=1 & t<2);
+convconm(x,h);
+axis([0 6 -1 2]);
+
+%% Ejercicio 3
+
+%%
+% 
+%  a)Analítico
+%  
+% 
+
+%%
+% <html>
+% <IMG src="anal3.png" width="250" height="150"/>
+% </html>
+
+figure
+subplot(1,3,1)
+syms t
+x=piecewise(t<0,0,0<=t<3,1,3<t<=4,-1,t>4,0);
+fplot(x,[-0.25,4.25],'r')
+grid on
+title('x(t)')
+axis([-1 6 -1.5 1.25]);
+subplot(1,3,2)
+h=piecewise(t<0,0,0<=t<3,1,3<t<=4,-1,t>4,0);
+fplot(h,[-0.25,4.25],'r')
+grid on
+title('x(t)')
+axis([-1 6 -1.5 1.25]);
+t1=-4:0.01:-3;
+t2=-3:0.01:-1;
+t3=-1:0.01:0;
+t4=0:0.01:1;
+t5=1:0.01:3;
+t6=3:0.01:4;
+subplot(1,3,3)
+plot(t1,(-t1-4))
+hold on
+plot(t2,(t2+2))
+plot(t3,(3*t3+4))
+plot(t4,(-3*t4+4))
+plot(t5,(-t5+2))
+plot(t6,(t6-4))
+grid on
+title('Autocorrelación x(t)*x(-t)')
+axis([-4.75 4.75 -1.25 4.25]);
+
+%%
+% 
+%  b)Calculado por MATLAB
+% 
+% 
+
+
+g = @(t)((t>=0&t<=3)-2.*(t>=3&t<=4)+(t>=3&t<=4))    
+f = @(t) -(-(t<=0&t>=-3)+2.*(t<=-3&t>=-4)-(t<=-3&t>=-4))
+convconm(g,f)
+
+%% Ejercicio 4
+
+%%
+% 
+%  a)Analítico
+%  
+% 
+
+%%
+% <html>
+% <IMG src="anal4.png" width="300" height="200"/>
+% </html>
+
+figure
+subplot(1,3,1)
+syms t
+x=piecewise(t<0,0,0<t<3,1,3<t<4,-1,t>4,0);
+fplot(x,[-2,6],'r')
+grid on
+title('x(t)')
+axis([-1.5 5 -1.5 1.5]);
+subplot(1,3,2)
+h=piecewise(t<0,0,0<t<2,1,2<t<4,-1,t>4,0);
+fplot(h,[-2,6],'r')
+grid on
+title('h(t)')
+axis([-1.5 5 -1.5 1.5]);
+t1=-4:0.01:-3;
+t2=-3:0.01:-2;
+t3=-2:0.01:-1;
+t4=-1:0.01:0;
+t5=-0:0.01:1;
+t6=1:0.01:2;
+t7=2:0.01:4;
+subplot(1,3,3)
+hold on
+plot(t1,-t1-4);
+plot(t2,t2+2);
+plot(t3,3.*t3+6);
+plot(t4,-t4+2);
+plot(t5,-3.*t5+2 );
+plot(t6,-t6);
+plot(t7,t7-4);
+grid on
+title('Correlación')
+axis([-5 5 -2.25 3.25 ]);
+%%
+% 
+%  b)Calculado por MATLAB
+%  
+% 
+
+g = @(t)((t>=0&t<=2)-2.*(t>=2&t<2)-(t>=2&t<=4)) 
+f = @(t) -(-(t<=0&t>=-3)+2.*(t<=-3&t>=-4)-(t<=-3&t>=-4))
+convconm(g,f)
+axis([-5 5 -2.25 3.25]);
+
+%% Conclusión
+% 
+%  
+%
+%  Al termino de esta practica podemos observar el desarrollo de las convoluciones y correlaciones llevadas a cabo con anterioridad,
+%  la idea fue utilizar el software "MATLAB" para poder ver realmente el comportamiento de las señales resultantes a 
+%  partir de sus graficas, con ello nos dimos a la tarea de implementar nuevas instrucciones que desconociamos de matlab donde
+%  nos simulba con movimiento el paso de la señal movil con la estatica formando al momento la convolucion o correlacion, dicha
+%  funcion se nombro "convcomm" y nos puede ser util para trabajos futuros para comprobar con precision futuras operaciones,
+%  y a sea convolucion o correlacion, de igual manera lo corroboramos con las graficas que se hicieron con los resultados analiticos.
+%  De igual manera conocimos formas distintas de allar area bajo la curva no por metodos de integracion, si no por metodos
+%  numericos, como ejemplo las Fórmulas cerradas de Newton-Cotes que consiste en Una forma de integrar es
+%  mediante la aproximación a $f(x)$ con un polinomio de interpolación de Langrage. La teoría de Lagrange dice que si $f(x)$ es integrable n veces,
+%  se puede hallar un polinomio que interpole a dicha función  más un término de error. y la regla del trapecio.
+% 
+%
+
+##### SOURCE END #####
+--></body></html>
