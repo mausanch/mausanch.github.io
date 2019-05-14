@@ -1,0 +1,1017 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>SySPrac05</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-14"><meta name="DC.source" content="SySPrac05.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><p>
+<IMG src="logoupii.png" width="55" height="50"/>
+<h2> INSTITUTO POLITÉCNICO NACIONAL </h2>
+<h2> UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS </h2>
+<h2> SEÑALES Y SISTEMAS </h2>
+<h1> Práctica 5 'Series de Fourier en tiempo continuo' </h1>
+<p> Profesor: Dr. Rafael Martinez Martinez </p>
+<p> Integrantes del equipo: </p>
+<ol>
+<li>Gutierrez Montor Mauricio</li>
+<li>Sánchez Moreno Mauricio Fabián</li>
+<li>Vanegas López Eduardo</li>
+</ol>
+<p> Grupo 2TV1 </p>
+<h2> Objetivos:
+<ol>
+<li>Realizar gráficas de series de Fourier exponenciales y trigonométricas en tiempo continuo</li>
+<li>Manipulación de instrucciones en MATLAB</li>
+<li>Calculo númerico de los coeficientes de Fourier</li>
+</ol>
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introducci&oacute;n:</a></li><li><a href="#2">Ejemplo 6.1</a></li><li><a href="#4">Ejemplo 6.2</a></li><li><a href="#6">Ejemplo 6.4</a></li><li><a href="#8">Ejemplo 6.5</a></li><li><a href="#10">Ejemplo 6.7</a></li><li><a href="#12">Computer Example C6.2</a></li><li><a href="#13">M&eacute;todos n&uacute;mericos</a></li></ul></div><h2 id="1">Introducci&oacute;n:</h2><p>Podemos computar DN num&eacute;ricamente usando la DFT (la transformada discreta de Fourier), que utiliza las muestras de una se&ntilde;al peri&oacute;dica <img src="SySPrac05_eq14833433867325483769.png" alt="$x(t)$"> durante un per&iacute;odo. El intervalo de muestreo es T segundos. Por lo tanto, hay: <img src="SySPrac05_eq17991288398453338376.png" alt="$N_0 = T_0/T$"> n&uacute;mero de muestras en un per&iacute;odo: <img src="SySPrac05_eq09699377331652163485.png" alt="$T_0$"></p><p>Para encontrar la relaci&oacute;n entre DN y las muestras de x (t), <img src="SySPrac05_eq15707090413991665871.png" alt="$D_n= \frac{1}{T_0}\int_{T_0} X(t) e^{-jn\omega_{0} t} dt$"></p><p><img src="SySPrac05_eq00573454890079453004.png" alt="$$ = \lim_{T \rightarrow 0}\frac{1}{N_0 T} \sum _{k=0}^{N_0-1}  X(kT)e^{-jn\omega_{0} kT} $$"></p><p><img src="SySPrac05_eq15476874941614083178.png" alt="$$ T =\lim_{T \rightarrow 0}\frac{1}{N_0} \sum _{k=0}^{N_0-1} X(kT)e^{-jn\Omega_{0} k} $$"></p><p>donde <img src="SySPrac05_eq06905719444939904769.png" alt="$x(kT)$"> es la muestra k-&eacute;sima de <img src="SySPrac05_eq14833433867325483769.png" alt="$x(t)$"> y</p><p><img src="SySPrac05_eq07887746378795506936.png" alt="$$N_0 = \frac{T_0}{T}$$"></p><p><img src="SySPrac05_eq16349900654832314193.png" alt="$$\Omega_{0} = \omega_{0} T = \frac{2\pi }{N_0}$$"></p><p>En la pr&aacute;ctica, es imposible hacer <img src="SySPrac05_eq05130068492524870277.png" alt="$T \rightarrow 0$"> . Podemos hacer T peque&ntilde;o, pero no cero, lo que provocar&aacute; que los datos aumenten sin l&iacute;mite. Por lo tanto, ignoraremos el l&iacute;mite en T con la comprensi&oacute;n impl&iacute;cita de que T es razonablemente peque&ntilde;o. T distinto de cero dar&aacute; lugar a alg&uacute;n error computacional, que es inevitable en cualquier evaluaci&oacute;n num&eacute;rica de una integral.El error resultante de T distinto de cero se denomina error de aliasing. Por lo tanto, podemos expresar como:</p><p><img src="SySPrac05_eq06030265569852673287.png" alt="$$D_n= \frac{1}{N_0} \sum _{k=0}^{N_0-1} X(kT)e^{-jn\Omega_{0} k} $$"></p><p>Ahora, <img src="SySPrac05_eq08708869945144221165.png" alt="$\Omega_{0} N_0 = 2\pi$">. Por lo tanto, <img src="SySPrac05_eq07029299220283848671.png" alt="$e^{j\Omega_{0}(k+N_0)}=e^{j\Omega_{0}k}$">. Sigue que <img src="SySPrac05_eq18130949357719733417.png" alt="$D_{n+N_0}=D_{n}$"></p><p>La propiedad de periodicidad <img src="SySPrac05_eq03064290637696021427.png" alt="$D_{n+N_0} = D_{n}$"> significa que m&aacute;s all&aacute; de <img src="SySPrac05_eq10823141063088735267.png" alt="$n = \frac{N_0}{2}$">, los coeficientes representan los valores para n negativo.Por ejemplo, cuando <img src="SySPrac05_eq12857379737106924492.png" alt="$N_0 = 32, D_{17} = D_{-15}, D_{18} = D_{-14},..., D_{31} = D_{-1}$">. El ciclo se repite de nuevo a partir de n = 32. Para este prop&oacute;sito necesitamos muestras de x (t) durante un per&iacute;odo a partir de t = 0. En este algoritmo, tambi&eacute;n es preferible (aunque no necesario) que <img src="SySPrac05_eq14438439004078460794.png" alt="$N_0$"> sea una potencia de 2, esto es <img src="SySPrac05_eq03250380963259158124.png" alt="$N_0 = 2^{m}$">, donde m es un entero.</p><h2 id="2">Ejemplo 6.1</h2><p>a)Para 4 arm&oacute;nicos</p><pre class="codeinput">clf
+d0=0.5043;
+a=-9;
+b=9;
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2).*(t&gt;=0 &amp; t&lt;=pi);
+cn=@(n) 0.5043*(2/(1+(16*n^2)^(1/2)));
+tn=@(n)-atan(4*n);
+armo=4;
+so=@(t) f(t)+f(t+pi)+f(t+(2*pi))+f(t+(3*pi))+f(t-pi)+f(t-(2*pi))+f(t-(3*pi));
+sfc(t0,tf,cn,d0,so,armo,a,b,tn);
+</pre><pre class="codeoutput">   99.5043  128.5043   99.5043
+
+  100.2017  129.2017  100.2017
+
+  101.1121  130.1121  101.1121
+
+  102.0776  131.0776  102.0776
+
+  103.0593  132.0593  103.0593
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_01.png" alt=""> <img vspace="5" hspace="5" src="SySPrac05_02.png" alt=""> <p>b)Para 15 arm&oacute;nicos</p><pre class="codeinput">clf
+d0=0.5043;
+a=-9;
+b=9;
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2).*(t&gt;=0 &amp; t&lt;=pi);
+cn=@(n) 0.5043*(2/(1+(16*n^2)^(1/2)));
+tn=@(n)-atan(4*n);
+armo=15;
+so=@(t) f(t)+f(t+pi)+f(t+(2*pi))+f(t+(3*pi))+f(t-pi)+f(t-(2*pi))+f(t-(3*pi));
+sfc(t0,tf,cn,d0,so,armo,a,b,tn);
+</pre><pre class="codeoutput">   99.5043  128.5043   99.5043
+
+  100.2017  129.2017  100.2017
+
+  101.1121  130.1121  101.1121
+
+  102.0776  131.0776  102.0776
+
+  103.0593  132.0593  103.0593
+
+  104.0480  133.0480  104.0480
+
+  105.0403  134.0403  105.0403
+
+  106.0348  135.0348  106.0348
+
+  107.0306  136.0306  107.0306
+
+  108.0273  137.0273  108.0273
+
+  109.0246  138.0246  109.0246
+
+  110.0224  139.0224  110.0224
+
+  111.0206  140.0206  111.0206
+
+  112.0190  141.0190  112.0190
+
+  113.0177  142.0177  113.0177
+
+  114.0165  143.0165  114.0165
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_03.png" alt=""> <h2 id="4">Ejemplo 6.2</h2><p>a)Para 4 arm&oacute;nicos</p><pre class="codeinput">clf
+d0=0;
+dn=@(n) (-12/(n.^2*pi.^2))*sin((n*pi)/2)*1j;
+t0=0;
+tf=2;
+f=@(t) (-3/2&lt;t &amp; t&lt;=-1/2).*(-6-6*t)+(t&lt;=1/2 &amp; -1/2&lt;=t).*(6*t)+(1/2&lt;t &amp; t&lt;=3/2).*(6-6*t)+(3/2&lt;t &amp; t&lt;=5/2).*(6*t-12)+(5/2&lt;t &amp; t&lt;=7/2).*(-6*t+18);
+armo=4;
+a=-6;
+b=6;
+sfc2(t0,tf,dn,d0,f,armo,a,b)
+</pre><pre class="codeoutput">   100   129   100
+
+   1.0e+02 *
+
+   1.0100 - 0.0122i   1.3000 - 0.0122i   1.0100 - 0.0122i
+
+   1.0e+02 *
+
+   1.0200 - 0.0000i   1.3100 - 0.0000i   1.0200 - 0.0000i
+
+   1.0e+02 *
+
+   1.0300 + 0.0014i   1.3200 + 0.0014i   1.0300 + 0.0014i
+
+   1.0e+02 *
+
+   1.0400 + 0.0000i   1.3300 + 0.0000i   1.0400 + 0.0000i
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_04.png" alt=""> <p>b)Para 15 arm&oacute;nicos</p><pre class="codeinput">clf
+d0=0;
+dn=@(n) (-12/(n.^2*pi.^2))*sin((n*pi)/2)*1j;
+t0=0;
+tf=2;
+f=@(t) (-3/2&lt;t &amp; t&lt;=-1/2).*(-6-6*t)+(t&lt;=1/2 &amp; -1/2&lt;=t).*(6*t)+(1/2&lt;t &amp; t&lt;=3/2).*(6-6*t)+(3/2&lt;t &amp; t&lt;=5/2).*(6*t-12)+(5/2&lt;t &amp; t&lt;=7/2).*(-6*t+18);
+armo=15;
+a=-6;
+b=6;
+sfc2(t0,tf,dn,d0,f,armo,a,b)
+</pre><pre class="codeoutput">   100   129   100
+
+   1.0e+02 *
+
+   1.0100 - 0.0122i   1.3000 - 0.0122i   1.0100 - 0.0122i
+
+   1.0e+02 *
+
+   1.0200 - 0.0000i   1.3100 - 0.0000i   1.0200 - 0.0000i
+
+   1.0e+02 *
+
+   1.0300 + 0.0014i   1.3200 + 0.0014i   1.0300 + 0.0014i
+
+   1.0e+02 *
+
+   1.0400 + 0.0000i   1.3300 + 0.0000i   1.0400 + 0.0000i
+
+   1.0e+02 *
+
+   1.0500 - 0.0005i   1.3400 - 0.0005i   1.0500 - 0.0005i
+
+   1.0e+02 *
+
+   1.0600 - 0.0000i   1.3500 - 0.0000i   1.0600 - 0.0000i
+
+   1.0e+02 *
+
+   1.0700 + 0.0002i   1.3600 + 0.0002i   1.0700 + 0.0002i
+
+   1.0e+02 *
+
+   1.0800 + 0.0000i   1.3700 + 0.0000i   1.0800 + 0.0000i
+
+   1.0e+02 *
+
+   1.0900 - 0.0002i   1.3800 - 0.0002i   1.0900 - 0.0002i
+
+   1.0e+02 *
+
+   1.1000 - 0.0000i   1.3900 - 0.0000i   1.1000 - 0.0000i
+
+   1.0e+02 *
+
+   1.1100 + 0.0001i   1.4000 + 0.0001i   1.1100 + 0.0001i
+
+   1.0e+02 *
+
+   1.1200 + 0.0000i   1.4100 + 0.0000i   1.1200 + 0.0000i
+
+   1.0e+02 *
+
+   1.1300 - 0.0001i   1.4200 - 0.0001i   1.1300 - 0.0001i
+
+   1.0e+02 *
+
+   1.1400 - 0.0000i   1.4300 - 0.0000i   1.1400 - 0.0000i
+
+   1.0e+02 *
+
+   1.1500 + 0.0001i   1.4400 + 0.0001i   1.1500 + 0.0001i
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_05.png" alt=""> <h2 id="6">Ejemplo 6.4</h2><p>a)Para 4 Arm&oacute;nicos</p><pre class="codeinput">clf
+d0=1/2;
+dn=@(n)(1/(n*pi))*sin((n*pi)/2);
+t0=-pi/2;
+tf=3*pi/2;
+f=@(t) 1.*(t&gt;=(-pi/2) &amp; t&lt;(pi/2))+0.*(t&gt;=(pi/2) &amp; t&lt;=(3*pi/2));
+<span class="comment">%f=@(t) 0.*(t&gt;=-pi &amp; t&lt;=-pi/2) + 1.*(t&gt;=(-pi/2) &amp; t&lt;(pi/2))+0.*(t&gt;=(pi/2) &amp; t&lt;=(pi));</span>
+armo=4;
+a=-15;
+b=15;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+</pre><pre class="codeoutput">  100.5000  129.5000  100.5000
+
+  101.3183  130.3183  101.3183
+
+   102   131   102
+
+  102.8939  131.8939  102.8939
+
+   104   133   104
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_06.png" alt=""> <p>b)Para 15 Arm&oacute;nicos</p><pre class="codeinput">clf
+d0=1/2;
+dn=@(n)(1/(n*pi))*sin((n*pi)/2);
+t0=-pi/2;
+tf=3*pi/2;
+f=@(t) 1.*(t&gt;=(-pi/2) &amp; t&lt;(pi/2))+0.*(t&gt;=(pi/2) &amp; t&lt;=(3*pi/2));
+<span class="comment">%f=@(t) 0.*(t&gt;=-pi &amp; t&lt;=-pi/2) + 1.*(t&gt;=(-pi/2) &amp; t&lt;(pi/2))+0.*(t&gt;=(pi/2) &amp; t&lt;=(pi));</span>
+armo=15;
+a=-15;
+b=15;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+</pre><pre class="codeoutput">  100.5000  129.5000  100.5000
+
+  101.3183  130.3183  101.3183
+
+   102   131   102
+
+  102.8939  131.8939  102.8939
+
+   104   133   104
+
+  105.0637  134.0637  105.0637
+
+   106   135   106
+
+  106.9545  135.9545  106.9545
+
+   108   137   108
+
+  109.0354  138.0354  109.0354
+
+   110   139   110
+
+  110.9711  139.9711  110.9711
+
+   112   141   112
+
+  113.0245  142.0245  113.0245
+
+   114   143   114
+
+  114.9788  143.9788  114.9788
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_07.png" alt=""> <h2 id="8">Ejemplo 6.5</h2><p>a) Para 4 Arm&oacute;nicos</p><pre class="codeinput">clf
+d0=0.504;
+dn=@(n) (0.504)/(1+(4*n*j));
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2);
+armo=4;
+a=-9;
+b=9;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+</pre><pre class="codeoutput">  100.5040  129.5040  100.5040
+
+   1.0e+02 *
+
+   1.0103 - 0.0012i   1.3003 - 0.0012i   1.0103 - 0.0012i
+
+   1.0e+02 *
+
+   1.0201 - 0.0006i   1.3101 - 0.0006i   1.0201 - 0.0006i
+
+   1.0e+02 *
+
+   1.0300 - 0.0004i   1.3200 - 0.0004i   1.0300 - 0.0004i
+
+   1.0e+02 *
+
+   1.0400 - 0.0003i   1.3300 - 0.0003i   1.0400 - 0.0003i
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_08.png" alt=""> <p>b) Para 15 Arm&oacute;nicos</p><pre class="codeinput">clf
+d0=0.504;
+dn=@(n) (0.504)/(1+(4*n*j));
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2);
+armo=15;
+a=-9;
+b=9;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+</pre><pre class="codeoutput">  100.5040  129.5040  100.5040
+
+   1.0e+02 *
+
+   1.0103 - 0.0012i   1.3003 - 0.0012i   1.0103 - 0.0012i
+
+   1.0e+02 *
+
+   1.0201 - 0.0006i   1.3101 - 0.0006i   1.0201 - 0.0006i
+
+   1.0e+02 *
+
+   1.0300 - 0.0004i   1.3200 - 0.0004i   1.0300 - 0.0004i
+
+   1.0e+02 *
+
+   1.0400 - 0.0003i   1.3300 - 0.0003i   1.0400 - 0.0003i
+
+   1.0e+02 *
+
+   1.0500 - 0.0003i   1.3400 - 0.0003i   1.0500 - 0.0003i
+
+   1.0e+02 *
+
+   1.0600 - 0.0002i   1.3500 - 0.0002i   1.0600 - 0.0002i
+
+   1.0e+02 *
+
+   1.0700 - 0.0002i   1.3600 - 0.0002i   1.0700 - 0.0002i
+
+   1.0e+02 *
+
+   1.0800 - 0.0002i   1.3700 - 0.0002i   1.0800 - 0.0002i
+
+   1.0e+02 *
+
+   1.0900 - 0.0001i   1.3800 - 0.0001i   1.0900 - 0.0001i
+
+   1.0e+02 *
+
+   1.1000 - 0.0001i   1.3900 - 0.0001i   1.1000 - 0.0001i
+
+   1.0e+02 *
+
+   1.1100 - 0.0001i   1.4000 - 0.0001i   1.1100 - 0.0001i
+
+   1.0e+02 *
+
+   1.1200 - 0.0001i   1.4100 - 0.0001i   1.1200 - 0.0001i
+
+   1.0e+02 *
+
+   1.1300 - 0.0001i   1.4200 - 0.0001i   1.1300 - 0.0001i
+
+   1.0e+02 *
+
+   1.1400 - 0.0001i   1.4300 - 0.0001i   1.1400 - 0.0001i
+
+   1.0e+02 *
+
+   1.1500 - 0.0001i   1.4400 - 0.0001i   1.1500 - 0.0001i
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_09.png" alt=""> <h2 id="10">Ejemplo 6.7</h2><p>a) Para 4 Arm&oacute;nicos</p><pre class="codeinput">clf
+d0=1/3;
+dn=@(n) 1/3;
+t0=0;
+tf=3;
+f=@(t) 1.*(t==0)+0.*(t&gt;=1 &amp; t&lt;=3)+1.*(t==3)+0.*(t&gt;=3 &amp; t&lt;=6);
+armo=4;
+a=-7;
+b=7;
+sfcNuevo(t0,tf,dn,d0,f,armo,a,b);
+</pre><pre class="codeoutput">  100.3333  129.3333  100.3333
+
+  101.3333  130.3333  101.3333
+
+  102.3333  131.3333  102.3333
+
+  103.3333  132.3333  103.3333
+
+  104.3333  133.3333  104.3333
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_10.png" alt=""> <p>b) Para 15 Arm&oacute;nicos</p><pre class="codeinput">clf
+d0=1/3;
+dn=@(n) 1/3;
+t0=0;
+tf=3;
+f=@(t) 1.*(t==0)+0.*(t&gt;=1 &amp; t&lt;=3)+1.*(t==3)+0.*(t&gt;=3 &amp; t&lt;=6);
+armo=15;
+a=-7;
+b=7;
+sfcNuevo(t0,tf,dn,d0,f,armo,a,b);
+</pre><pre class="codeoutput">  100.3333  129.3333  100.3333
+
+  101.3333  130.3333  101.3333
+
+  102.3333  131.3333  102.3333
+
+  103.3333  132.3333  103.3333
+
+  104.3333  133.3333  104.3333
+
+  105.3333  134.3333  105.3333
+
+  106.3333  135.3333  106.3333
+
+  107.3333  136.3333  107.3333
+
+  108.3333  137.3333  108.3333
+
+  109.3333  138.3333  109.3333
+
+  110.3333  139.3333  110.3333
+
+  111.3333  140.3333  111.3333
+
+  112.3333  141.3333  112.3333
+
+  113.3333  142.3333  113.3333
+
+  114.3333  143.3333  114.3333
+
+  115.3333  144.3333  115.3333
+
+</pre><img vspace="5" hspace="5" src="SySPrac05_11.png" alt=""> <h2 id="12">Computer Example C6.2</h2><pre class="codeinput">clf
+f=@(t) exp(-t/2);
+t=[0:0.001:20];
+plot(t,f(mod(t,pi)))
+
+
+
+sumterms = zeros(15, length(t)); sumterms(1,:) = 0.504; <span class="comment">%15 armonicos</span>
+<span class="keyword">for</span> n = 1:size(sumterms,1)-1;
+sumterms(n+1,:) = 0.504/(1+4*n*1j).*exp(2*n*t*1j);
+<span class="keyword">end</span>
+x_N = cumsum (sumterms); figure(1); clf; ind = 0;
+<span class="keyword">for</span> N = [0,1:2:size(sumterms, 1)-1],
+ind = ind+1; subplot (3,3,ind);
+plot (t,x_N(N+1,:), <span class="string">'k'</span>,t,f(mod(t,pi))+0j, <span class="string">'r--'</span>); axis ([0 20 -0.2 1.2]);
+xlabel (<span class="string">'t'</span>); ylabel ([<span class="string">'x_{'</span>,num2str(N),<span class="string">'} (t)'</span>]);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Warning: Imaginary parts of complex X and/or Y arguments ignored 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+Warning: Imaginary parts of complex X and/or Y arguments ignored 
+</pre><img vspace="5" hspace="5" src="SySPrac05_12.png" alt=""> <h2 id="13">M&eacute;todos n&uacute;mericos</h2><p>Primero, implementando el algoritmo DFT propuesto en Lathi COMPUTER EXAMPLE C6.4, para el ejemplo 6.5 que se desarroll&oacute; en el R10, se obtiene lo siguiente:</p><pre class="codeinput">clf
+T_0 = pi; N_0 = 256; T = T_0/N_0; t = (0:T:T*(N_0-1))'; M = 10;
+x = exp(-t/2); x(1) = (exp(-pi/2) + 1)/2;
+
+figure(1)
+D_n = fft (x)/N_0; n = [-N_0/2:N_0/2-1]';
+
+<span class="keyword">for</span> a = 1:1:5
+mag_dft(a)=abs(fftshift(D_n(a)));
+<span class="keyword">end</span>
+<span class="keyword">for</span> a = 1:1:5
+ang_dft(a)=angle(fftshift(D_n(a)));
+<span class="keyword">end</span>
+
+clf; subplot (2, 2, 1); stem(n, abs(fftshift (D_n)),<span class="string">'k'</span>);
+axis ([-M M -.1 .6]); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'|D_n|'</span>);
+subplot (2, 2, 2); stem(n, angle(fftshift(D_n)),<span class="string">'k'</span>);
+axis([-M M -pi pi]); xlabel (<span class="string">'n'</span>); ylabel(<span class="string">'\angle D n [rad]'</span>);
+<span class="comment">%------</span>
+
+T_0 = pi; N_0 = 256; T = T_0/N_0; W_0=2*pi/T_0; t = (0:T:T*(N_0-1))'; M = 10;
+
+x_0 =@(t) exp(-t/2);
+x_1 =@(t) exp(-t/2)*exp(-1j*W_0*t);
+x_2 =@(t) exp(-t/2)*exp(-2j*W_0*t);
+x_3 =@(t) exp(-t/2)*exp(-3j*W_0*t);
+x_4 =@(t) exp(-t/2)*exp(-4j*W_0*t);
+</pre><img vspace="5" hspace="5" src="SySPrac05_13.png" alt=""> <p>Hallando los D0,...D4 (n positiva) por trapecio compuesto. Aqu&iacute; solo se encontraron los Dn positivos, para el simple hecho de comparar esos valores con la gr&aacute;fica anterior, que son los Dns que nos interesan en la pr&aacute;ctica.</p><pre class="codeinput">n=[0:1:4];
+D_n=[trap_com(x_0,0,pi,pi/2)/T_0,trap_com(x_1,0,pi,pi/2)/T_0,trap_com(x_2,0,pi,pi/2)/T_0,trap_com(x_3,0,pi,pi/2)/T_0,trap_com(x_4,0,pi,pi/2)/T_0];
+mag_trap=abs(D_n);
+ang_trap=angle(D_n);
+
+clf; subplot (2, 2, 1); stem(n, abs( (D_n)),<span class="string">'k'</span>);
+axis ([-M M -.1 .6]); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'|D_n|'</span>);
+subplot (2, 2, 2); stem(n, angle((D_n)),<span class="string">'k'</span>);
+axis([-M M -pi pi]); xlabel (<span class="string">'n'</span>); ylabel(<span class="string">'\angle D n [rad]'</span>);
+hold <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac05_14.png" alt=""> <p>De acuerdo a Lathi, en el ejemplo 6.5, que se desarroll&oacute; en el R10, la serie de Fourier exponencial compleja tiene Dn: <img src="SySPrac05_eq11462128157880710935.png" alt="$\left.\frac{-1}{\pi (1/2+j2n)}e^{-(1/2+j2n)t}\right |_{t=0}^{\pi}$"> Para llegar al resultado m&aacute;s preciso, no se utiliz&oacute; el resultado final de Lathi que indica <img src="SySPrac05_eq11815252062284937394.png" alt="$\frac{0.504}{1+j4n}$">. Sino que desarrollando, se encontr&oacute;: <img src="SySPrac05_eq08029797175683308747.png" alt="$\frac{-1}{\pi (1/2+j2n)}(e^{-\frac{\pi}{2}}-1)$"></p><pre class="codeinput"><span class="keyword">for</span> n=2:1:5
+   mag_ex(n)=abs((-exp(-pi/2)+1)/(pi*(0.5+2j*(n-1))));
+<span class="keyword">end</span>
+mag_ex(1)=abs((-exp(-pi/2)+1)/(pi*(0.5)));
+
+<span class="keyword">for</span> n=2:1:5
+   ang_ex(n)=angle((-exp(-pi/2)+1)/(pi*(0.5+2j*(n-1))));
+<span class="keyword">end</span>
+ang_ex(1)=angle((-exp(-pi/2)+1)/(pi*(0.5)));
+
+T = table(mag_dft',ang_dft',mag_trap',ang_trap',mag_ex',ang_ex'); T(1:5,:);
+T.Properties.RowNames = {<span class="string">'D0'</span>,<span class="string">'D1'</span>,<span class="string">'D2'</span>,<span class="string">'D3'</span>,<span class="string">'D4'</span>};
+T.Properties.VariableNames{<span class="string">'Var1'</span>} = <span class="string">'Abs_DFT'</span>;
+T.Properties.VariableNames{<span class="string">'Var2'</span>} = <span class="string">'Ang_DFT'</span>;
+T.Properties.VariableNames{<span class="string">'Var3'</span>} = <span class="string">'Abs_Trap_Com'</span>;
+T.Properties.VariableNames{<span class="string">'Var4'</span>} = <span class="string">'Ang_Trap_Com'</span>;
+T.Properties.VariableNames{<span class="string">'Var5'</span>} = <span class="string">'Abs_Exacto'</span>;
+T.Properties.VariableNames{<span class="string">'Var6'</span>} = <span class="string">'Ang_Exacto'</span>
+</pre><pre class="codeoutput">
+T =
+
+  5&times;6 table
+
+          Abs_DFT     Ang_DFT    Abs_Trap_Com    Ang_Trap_Com    Abs_Exacto    Ang_Exacto
+          ________    _______    ____________    ____________    __________    __________
+
+    D0     0.50428          0     0.50474              0          0.50428            0   
+    D1      0.1223    -1.3258     0.12063        -1.3184          0.12231      -1.3258   
+    D2    0.062536    -1.4464    0.058915        -1.4306         0.062548      -1.4464   
+    D3    0.041859    -1.4876    0.036274        -1.4609         0.041878      -1.4877   
+    D4    0.031431    -1.5083    0.023788        -1.4657         0.031456      -1.5084   
+
+</pre><p>En su forma rectangular</p><pre class="codeinput">DFT=mag_dft.*exp(1j.*ang_dft);
+TRAP=mag_trap.*exp(1j*ang_trap);
+EXAC=mag_ex.*exp(1j*ang_ex);
+
+D= table(DFT',TRAP',EXAC');
+D.Properties.RowNames = {<span class="string">'D0'</span>,<span class="string">'D1'</span>,<span class="string">'D2'</span>,<span class="string">'D3'</span>,<span class="string">'D4'</span>};
+D.Properties.VariableNames{<span class="string">'Var1'</span>} = <span class="string">'Dn_por_DFT'</span>;
+D.Properties.VariableNames{<span class="string">'Var2'</span>} = <span class="string">'Dn_por_Trap_comp'</span>;
+D.Properties.VariableNames{<span class="string">'Var3'</span>} = <span class="string">'Dn_exacto'</span>
+</pre><pre class="codeoutput">
+D =
+
+  5&times;3 table
+
+              Dn_por_DFT          Dn_por_Trap_comp           Dn_exacto     
+          ___________________    ___________________    ___________________
+
+    D0      0.50428+0i             0.50474+0i             0.50428+0i       
+    D1     0.029665+0.11865i      0.030128+0.11681i      0.029664+0.11865i 
+    D2    0.0077597+0.062053i    0.0082355+0.058337i    0.0077581+0.062065i
+    D3    0.0034794+0.041714i    0.0039773+0.036056i    0.0034778+0.041733i
+    D4    0.0019638+0.03137i     0.0024955+0.023657i    0.0019622+0.031395i
+
+</pre><p>En la siguiente tabla se muestra la comparaci&oacute;n del error entre el algoritmo del trapecio compuesto y el algoritmo de la Transformada de Fourier Discreta (DFT).</p><pre class="codeinput">DFT_EXAC=abs(EXAC-DFT);
+TRAP_EXAC=abs(EXAC-TRAP);
+
+CMP= table(DFT_EXAC',TRAP_EXAC');
+CMP.Properties.RowNames = {<span class="string">'D0'</span>,<span class="string">'D1'</span>,<span class="string">'D2'</span>,<span class="string">'D3'</span>,<span class="string">'D4'</span>};
+CMP.Properties.VariableNames{<span class="string">'Var1'</span>} = <span class="string">'ERROR_DFT'</span>;
+CMP.Properties.VariableNames{<span class="string">'Var2'</span>} = <span class="string">'ERROR_TRAP'</span>
+</pre><pre class="codeoutput">
+CMP =
+
+  5&times;2 table
+
+          ERROR_DFT     ERROR_TRAP
+          __________    __________
+
+    D0    1.5822e-06    0.00046075
+    D1    6.5235e-06     0.0019053
+    D2    1.2756e-05     0.0037589
+    D3    1.9053e-05     0.0056998
+    D4    2.5368e-05     0.0077565
+
+</pre><p>Por lo tanto se puede ver que el algoritmo DFT es m&aacute;s preciso que el del trapecio compuesto, puesto que hubo menor error que el valor exacto.</p><p>El algoritmo del trapecio compuesto implementado, de acuerdo con la informaci&oacute;n de la pr&aacute;ctica anterior fue el siguiente:</p><pre class="language-matlab">
+<span class="keyword">function</span> [inte,error]= trap_com(f,a,b,u)
+<span class="comment">%Primer argumento es una funci&oacute;n an&oacute;nima a la que se quiere encontrar la</span>
+<span class="comment">%integral por aproximaci&oacute;n del trapecio compuesto.</span>
+<span class="comment">%a,b: son el l&iacute;mete inferior y superios respectivamente, de la integraci&oacute;n.</span>
+<span class="comment">%u: n&uacute;mero entre a y b que ajusta el error</span>
+
+suma=0;
+n=15;
+h=(b-a)/n;
+ft=sym(f);
+dd=diff(diff(ft));
+ddf=matlabFunction(dd);
+inte=(h/2)*(f(a)+f(b));
+error=-(((b-a)/12)*h^2)*ddf(u);
+<span class="keyword">for</span> in=1:1:(n-1)
+    xin=a+in*h;
+    suma=suma+f(xin);
+<span class="keyword">end</span>
+inte=inte+h*suma; 
+
+<span class="keyword">end</span>
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+% <html>
+% <IMG src="logoupii.png" width="55" height="50"/>
+% <h2> INSTITUTO POLITÉCNICO NACIONAL </h2>
+% <h2> UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS </h2>
+% <h2> SEÑALES Y SISTEMAS </h2>
+% <h1> Práctica 5 'Series de Fourier en tiempo continuo' </h1>
+% <p> Profesor: Dr. Rafael Martinez Martinez </p>
+% <p> Integrantes del equipo: </p>
+% <ol>
+% <li>Gutierrez Montor Mauricio</li>
+% <li>Sánchez Moreno Mauricio Fabián</li>
+% <li>Vanegas López Eduardo</li>
+% </ol>
+% <p> Grupo 2TV1 </p>
+% <h2> Objetivos:
+% <ol>
+% <li>Realizar gráficas de series de Fourier exponenciales y trigonométricas en tiempo continuo</li>
+% <li>Manipulación de instrucciones en MATLAB</li>
+% <li>Calculo númerico de los coeficientes de Fourier</li>
+% </ol>
+% </html>
+
+
+%% Introducción:
+% Podemos computar DN numéricamente usando la DFT (la transformada discreta de Fourier), que utiliza las muestras
+% de una señal periódica $x(t)$ durante un período.
+% El intervalo de muestreo es T segundos. Por lo tanto, hay: $N_0 = T_0/T$ número de muestras en un período: $T_0$
+% 
+% Para encontrar la relación entre DN y las muestras de x (t), $D_n= \frac{1}{T_0}\int_{T_0} X(t) e^{-jn\omega_{0} t} dt$
+% 
+% $$ = \lim_{T \rightarrow 0}\frac{1}{N_0 T} \sum _{k=0}^{N_0-1}  X(kT)e^{-jn\omega_{0} kT} $$
+%
+% $$ T =\lim_{T \rightarrow 0}\frac{1}{N_0} \sum _{k=0}^{N_0-1} X(kT)e^{-jn\Omega_{0} k} $$
+%
+% donde $x(kT)$ es la muestra k-ésima de $x(t)$ y 
+%
+% $$N_0 = \frac{T_0}{T}$$
+%
+% $$\Omega_{0} = \omega_{0} T = \frac{2\pi }{N_0}$$
+%
+% En la práctica, es imposible hacer $T \rightarrow 0$ . Podemos hacer T pequeño, pero no cero, lo que provocará que los datos aumenten sin límite.
+% Por lo tanto, ignoraremos el límite en T con la comprensión implícita de que T es razonablemente pequeño. T distinto de cero dará lugar a algún error computacional, que es inevitable en cualquier 
+% evaluación numérica de una integral.El error resultante de T distinto de cero se denomina error de aliasing. Por lo tanto, podemos expresar como:
+%
+% $$D_n= \frac{1}{N_0} \sum _{k=0}^{N_0-1} X(kT)e^{-jn\Omega_{0} k} $$
+%   
+% Ahora, $\Omega_{0} N_0 = 2\pi$. Por lo tanto, $e^{j\Omega_{0}(k+N_0)}=e^{j\Omega_{0}k}$. Sigue que $D_{n+N_0}=D_{n}$
+%
+% La propiedad de periodicidad $D_{n+N_0} = D_{n}$ significa que más allá de $n = \frac{N_0}{2}$, los coeficientes
+% representan los valores para n negativo.Por ejemplo, cuando $N_0 = 32, D_{17} = D_{-15}, D_{18} = D_{-14},..., D_{31} = D_{-1}$. El ciclo se repite de nuevo a partir de n = 32.
+% Para este propósito necesitamos muestras de x (t) durante un período a
+% partir de t = 0. En este algoritmo, también es preferible (aunque no necesario) que $N_0$ sea
+% una potencia de 2, esto es $N_0 = 2^{m}$, donde m es un entero.
+%
+%
+%
+%
+%
+%% Ejemplo 6.1
+% 
+% a)Para 4 armónicos
+% 
+
+clf
+d0=0.5043;
+a=-9;
+b=9;
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2).*(t>=0 & t<=pi);
+cn=@(n) 0.5043*(2/(1+(16*n^2)^(1/2)));
+tn=@(n)-atan(4*n);
+armo=4;
+so=@(t) f(t)+f(t+pi)+f(t+(2*pi))+f(t+(3*pi))+f(t-pi)+f(t-(2*pi))+f(t-(3*pi));
+sfc(t0,tf,cn,d0,so,armo,a,b,tn);
+%%
+% 
+% b)Para 15 armónicos
+%
+
+clf
+d0=0.5043;
+a=-9;
+b=9;
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2).*(t>=0 & t<=pi);
+cn=@(n) 0.5043*(2/(1+(16*n^2)^(1/2)));
+tn=@(n)-atan(4*n);
+armo=15;
+so=@(t) f(t)+f(t+pi)+f(t+(2*pi))+f(t+(3*pi))+f(t-pi)+f(t-(2*pi))+f(t-(3*pi));
+sfc(t0,tf,cn,d0,so,armo,a,b,tn);
+
+
+%% Ejemplo 6.2
+% 
+% a)Para 4 armónicos
+%  
+clf
+d0=0;
+dn=@(n) (-12/(n.^2*pi.^2))*sin((n*pi)/2)*1j;
+t0=0;
+tf=2;
+f=@(t) (-3/2<t & t<=-1/2).*(-6-6*t)+(t<=1/2 & -1/2<=t).*(6*t)+(1/2<t & t<=3/2).*(6-6*t)+(3/2<t & t<=5/2).*(6*t-12)+(5/2<t & t<=7/2).*(-6*t+18);
+armo=4;
+a=-6;
+b=6;
+sfc2(t0,tf,dn,d0,f,armo,a,b) 
+%%
+% 
+% b)Para 15 armónicos
+%  
+clf
+d0=0;
+dn=@(n) (-12/(n.^2*pi.^2))*sin((n*pi)/2)*1j;
+t0=0;
+tf=2;
+f=@(t) (-3/2<t & t<=-1/2).*(-6-6*t)+(t<=1/2 & -1/2<=t).*(6*t)+(1/2<t & t<=3/2).*(6-6*t)+(3/2<t & t<=5/2).*(6*t-12)+(5/2<t & t<=7/2).*(-6*t+18);
+armo=15;
+a=-6;
+b=6;
+sfc2(t0,tf,dn,d0,f,armo,a,b) 
+
+
+
+%% Ejemplo 6.4
+% 
+% a)Para 4 Armónicos
+%  
+% 
+clf
+d0=1/2;
+dn=@(n)(1/(n*pi))*sin((n*pi)/2);
+t0=-pi/2;
+tf=3*pi/2;
+f=@(t) 1.*(t>=(-pi/2) & t<(pi/2))+0.*(t>=(pi/2) & t<=(3*pi/2));
+%f=@(t) 0.*(t>=-pi & t<=-pi/2) + 1.*(t>=(-pi/2) & t<(pi/2))+0.*(t>=(pi/2) & t<=(pi));
+armo=4;
+a=-15;
+b=15;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+
+%%
+% 
+% b)Para 15 Armónicos
+%  
+% 
+
+clf
+d0=1/2;
+dn=@(n)(1/(n*pi))*sin((n*pi)/2);
+t0=-pi/2;
+tf=3*pi/2;
+f=@(t) 1.*(t>=(-pi/2) & t<(pi/2))+0.*(t>=(pi/2) & t<=(3*pi/2));
+%f=@(t) 0.*(t>=-pi & t<=-pi/2) + 1.*(t>=(-pi/2) & t<(pi/2))+0.*(t>=(pi/2) & t<=(pi));
+armo=15;
+a=-15;
+b=15;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+
+
+
+
+
+%% Ejemplo 6.5
+% 
+% a) Para 4 Armónicos 
+% 
+% 
+% 
+clf
+d0=0.504;
+dn=@(n) (0.504)/(1+(4*n*j));
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2);
+armo=4;
+a=-9;
+b=9;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+
+%%
+% 
+% b) Para 15 Armónicos 
+% 
+clf
+d0=0.504;
+dn=@(n) (0.504)/(1+(4*n*j));
+t0=0;
+tf=pi;
+f=@(t) exp(-t/2);
+armo=15;
+a=-9;
+b=9;
+sfc2(t0,tf,dn,d0,f,armo,a,b);
+
+
+
+%% Ejemplo 6.7
+% 
+% a) Para 4 Armónicos 
+% 
+clf
+d0=1/3;
+dn=@(n) 1/3;
+t0=0;
+tf=3;
+f=@(t) 1.*(t==0)+0.*(t>=1 & t<=3)+1.*(t==3)+0.*(t>=3 & t<=6);
+armo=4;
+a=-7;
+b=7;
+sfcNuevo(t0,tf,dn,d0,f,armo,a,b);
+
+
+%%
+% 
+% b) Para 15 Armónicos 
+% 
+
+clf
+d0=1/3;
+dn=@(n) 1/3;
+t0=0;
+tf=3;
+f=@(t) 1.*(t==0)+0.*(t>=1 & t<=3)+1.*(t==3)+0.*(t>=3 & t<=6);
+armo=15;
+a=-7;
+b=7;
+sfcNuevo(t0,tf,dn,d0,f,armo,a,b);
+
+%% Computer Example C6.2
+% 
+% 
+% 
+% 
+clf
+f=@(t) exp(-t/2);
+t=[0:0.001:20];
+plot(t,f(mod(t,pi)))
+
+
+
+sumterms = zeros(15, length(t)); sumterms(1,:) = 0.504; %15 armonicos
+for n = 1:size(sumterms,1)-1;
+sumterms(n+1,:) = 0.504/(1+4*n*1j).*exp(2*n*t*1j);
+end
+x_N = cumsum (sumterms); figure(1); clf; ind = 0;
+for N = [0,1:2:size(sumterms, 1)-1],
+ind = ind+1; subplot (3,3,ind);
+plot (t,x_N(N+1,:), 'k',t,f(mod(t,pi))+0j, 'rREPLACE_WITH_DASH_DASH'); axis ([0 20 -0.2 1.2]);
+xlabel ('t'); ylabel (['x_{',num2str(N),'} (t)']);
+end
+
+%% Métodos númericos 
+% 
+% 
+% Primero, implementando el algoritmo DFT propuesto en Lathi COMPUTER EXAMPLE C6.4, para el ejemplo 6.5 que se desarrolló en el R10, se obtiene lo
+% siguiente:
+% 
+clf
+T_0 = pi; N_0 = 256; T = T_0/N_0; t = (0:T:T*(N_0-1))'; M = 10;
+x = exp(-t/2); x(1) = (exp(-pi/2) + 1)/2;
+
+figure(1)
+D_n = fft (x)/N_0; n = [-N_0/2:N_0/2-1]';
+
+for a = 1:1:5
+mag_dft(a)=abs(fftshift(D_n(a)));
+end
+for a = 1:1:5
+ang_dft(a)=angle(fftshift(D_n(a)));
+end
+
+clf; subplot (2, 2, 1); stem(n, abs(fftshift (D_n)),'k');
+axis ([-M M -.1 .6]); xlabel('n'); ylabel('|D_n|');
+subplot (2, 2, 2); stem(n, angle(fftshift(D_n)),'k');
+axis([-M M -pi pi]); xlabel ('n'); ylabel('\angle D n [rad]');
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+T_0 = pi; N_0 = 256; T = T_0/N_0; W_0=2*pi/T_0; t = (0:T:T*(N_0-1))'; M = 10;
+
+x_0 =@(t) exp(-t/2);
+x_1 =@(t) exp(-t/2)*exp(-1j*W_0*t);
+x_2 =@(t) exp(-t/2)*exp(-2j*W_0*t);
+x_3 =@(t) exp(-t/2)*exp(-3j*W_0*t);
+x_4 =@(t) exp(-t/2)*exp(-4j*W_0*t);
+
+%%
+% Hallando los D0,...D4 (n positiva) por trapecio compuesto. Aquí solo se
+% encontraron los Dn positivos, para el simple hecho de comparar esos
+% valores con la gráfica anterior, que son los Dns que nos interesan en la
+% práctica.
+%%
+
+n=[0:1:4];
+D_n=[trap_com(x_0,0,pi,pi/2)/T_0,trap_com(x_1,0,pi,pi/2)/T_0,trap_com(x_2,0,pi,pi/2)/T_0,trap_com(x_3,0,pi,pi/2)/T_0,trap_com(x_4,0,pi,pi/2)/T_0];
+mag_trap=abs(D_n);
+ang_trap=angle(D_n);
+
+clf; subplot (2, 2, 1); stem(n, abs( (D_n)),'k');
+axis ([-M M -.1 .6]); xlabel('n'); ylabel('|D_n|');
+subplot (2, 2, 2); stem(n, angle((D_n)),'k');
+axis([-M M -pi pi]); xlabel ('n'); ylabel('\angle D n [rad]');
+hold on
+%%
+% De acuerdo a Lathi, en el ejemplo 6.5, que se desarrolló en el R10, la
+% serie de Fourier exponencial compleja tiene Dn:
+% $\left.\frac{-1}{\pi (1/2+j2n)}e^{-(1/2+j2n)t}\right |_{t=0}^{\pi}$
+% Para llegar al resultado más preciso, no se utilizó el resultado final de
+% Lathi que indica $\frac{0.504}{1+j4n}$. Sino que desarrollando, se
+% encontró: $\frac{-1}{\pi (1/2+j2n)}(e^{-\frac{\pi}{2}}-1)$
+%%
+for n=2:1:5
+   mag_ex(n)=abs((-exp(-pi/2)+1)/(pi*(0.5+2j*(n-1)))); 
+end
+mag_ex(1)=abs((-exp(-pi/2)+1)/(pi*(0.5)));
+
+for n=2:1:5
+   ang_ex(n)=angle((-exp(-pi/2)+1)/(pi*(0.5+2j*(n-1)))); 
+end
+ang_ex(1)=angle((-exp(-pi/2)+1)/(pi*(0.5)));
+
+T = table(mag_dft',ang_dft',mag_trap',ang_trap',mag_ex',ang_ex'); T(1:5,:);
+T.Properties.RowNames = {'D0','D1','D2','D3','D4'};
+T.Properties.VariableNames{'Var1'} = 'Abs_DFT';
+T.Properties.VariableNames{'Var2'} = 'Ang_DFT';
+T.Properties.VariableNames{'Var3'} = 'Abs_Trap_Com';
+T.Properties.VariableNames{'Var4'} = 'Ang_Trap_Com';
+T.Properties.VariableNames{'Var5'} = 'Abs_Exacto';
+T.Properties.VariableNames{'Var6'} = 'Ang_Exacto'
+%%
+% En su forma rectangular
+%%
+DFT=mag_dft.*exp(1j.*ang_dft);
+TRAP=mag_trap.*exp(1j*ang_trap);
+EXAC=mag_ex.*exp(1j*ang_ex);
+
+D= table(DFT',TRAP',EXAC');
+D.Properties.RowNames = {'D0','D1','D2','D3','D4'};
+D.Properties.VariableNames{'Var1'} = 'Dn_por_DFT';
+D.Properties.VariableNames{'Var2'} = 'Dn_por_Trap_comp';
+D.Properties.VariableNames{'Var3'} = 'Dn_exacto'
+%%
+% En la siguiente tabla se muestra la comparación del error entre el
+% algoritmo del trapecio compuesto y el algoritmo de la Transformada de
+% Fourier Discreta (DFT).
+%%
+DFT_EXAC=abs(EXAC-DFT);
+TRAP_EXAC=abs(EXAC-TRAP);
+
+CMP= table(DFT_EXAC',TRAP_EXAC');
+CMP.Properties.RowNames = {'D0','D1','D2','D3','D4'};
+CMP.Properties.VariableNames{'Var1'} = 'ERROR_DFT';
+CMP.Properties.VariableNames{'Var2'} = 'ERROR_TRAP'
+%%
+% Por lo tanto se puede ver que el algoritmo DFT es más preciso que el del
+% trapecio compuesto, puesto que hubo menor error que el valor exacto.
+%%
+% El algoritmo del trapecio compuesto implementado, de acuerdo con la
+% información de la práctica anterior fue el siguiente:
+
+%%
+%
+% <include>trap_com.m</include>
+%
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
