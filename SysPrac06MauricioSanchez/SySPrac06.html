@@ -1,0 +1,508 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>SySPrac06</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-21"><meta name="DC.source" content="SySPrac06.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><p>
+<IMG src="logoupii.png" width="55" height="50"/>
+<h2> INSTITUTO POLITÉCNICO NACIONAL </h2>
+<h2> UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS </h2>
+<h2> SEÑALES Y SISTEMAS </h2>
+<h1> Práctica 6 'Sistemas diferenciales' </h1>
+<p> Profesor: Dr. Rafael Martinez Martinez </p>
+<p> Integrantes del equipo: </p>
+<ol>
+<li>Gutierrez Montor Mauricio</li>
+<li>Sánchez Moreno Mauricio Fabián</li>
+<li>Vanegas López Eduardo</li>
+</ol>
+<p> Grupo 2TV1 </p>
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Funci&oacute;n de transferencia</a></li><li><a href="#4">Respuesta al impulso</a></li><li><a href="#5">Respuesta a entrada cero</a></li><li><a href="#6">Respuesta a estado cero</a></li><li><a href="#7">Respuesta total</a></li><li><a href="#8">Respuesta a escal&oacute;n en condiciones cero</a></li><li><a href="#9">Graficas</a></li></ul></div><p>Un sistema diferencial tiene un comportamiento descrito por la siguiente ecuaci&oacute;n diferencial:</p><p><img src="SySPrac06_eq16396640969215607487.png" alt="$$\ddot{y}(t)+2\dot{y}(t)+2y=\dot{x}(t)+2x $$"></p><p>Con <img src="SySPrac06_eq03856018880111130683.png" alt="$y(0^{-})=1$"> y <img src="SySPrac06_eq13679258539156499782.png" alt="$\dot{y}(0^{-})=0$"></p><p><img src="SySPrac06_eq05733120675232018958.png" alt="$x(t)=e^{-t}u(t)$"> y por lo tanto <img src="SySPrac06_eq06483446706853873755.png" alt="$x(0^{-})=0$"></p><div><ul><li>Muestra la funci&oacute;n de transferencia del sistema</li><li>Muestra la respuesta al impulso (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta a entrada cero (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta a estado cero (simb&oacute;lico, gr&aacute;fica)</li><li>Muestra la respuesta total (simb&oacute;lico, gr&aacute;fica)</li><li>La respuesta total al escal&oacute;n con condiciones iniciales 0 (simb&oacute;lico, gr&aacute;fica)</li><li>Usando subplot, depliega una figura con 5 gr&aacute;ficas</li></ul></div><pre class="codeinput">syms <span class="string">t</span>;
+f=exp(-1*t).*heaviside(t);
+</pre><h2 id="3">Funci&oacute;n de transferencia</h2><pre class="codeinput">disp(<span class="string">'Funcion de transferrencia'</span>)
+transferencia([2,2,1],[2,1])
+</pre><pre class="codeoutput">Funcion de transferrencia
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+2 X(s) + s X(s)
+
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+s + 2
+
+ 
+DESPEJAMOS H(s)
+ 
+H(s)=
+    s + 2
+------------
+ 2
+s  + 2 s + 2
+
+</pre><h2 id="4">Respuesta al impulso</h2><pre class="codeinput">disp(<span class="string">'Respuesta al impulso'</span>)
+laplace2016a([2,2,1],[2,1],[0,0],[0],dirac(t),10) <span class="comment">%Con condiciones iniciales cero y entrada dirac(t)</span>
+</pre><pre class="codeoutput">Respuesta al impulso
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+2 X(s) + s X(s)
+
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+s + 2
+
+    s + 2
+------------
+ 2
+s  + 2 s + 2
+
+ 
+En el espacio de Laplace: 
+ 
+Y(s)=
+    s + 2
+------------
+ 2
+s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) (cos(t) + sin(t))
+
+</pre><img vspace="5" hspace="5" src="SySPrac06_01.png" alt=""> <h2 id="5">Respuesta a entrada cero</h2><pre class="codeinput">disp(<span class="string">'Respuesta a entrada cero'</span>)
+laplace2016a([2,2,1],[0,0],[1,0],[0],f,10) <span class="comment">%Con condiciones iniciales y entrada cero</span>
+</pre><pre class="codeoutput">Respuesta a entrada cero
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 2
+
+0
+
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 2
+
+0
+
+    s + 2
+------------
+ 2
+s  + 2 s + 2
+
+ 
+En el espacio de Laplace: 
+ 
+Y(s)=
+    s + 2
+------------
+ 2
+s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) (cos(t) + sin(t))
+
+</pre><img vspace="5" hspace="5" src="SySPrac06_02.png" alt=""> <h2 id="6">Respuesta a estado cero</h2><pre class="codeinput">disp(<span class="string">'Respuesta a estado cero'</span>)
+laplace2016a([2,2,1],[2,1],[0,0],[0],f,10) <span class="comment">%Con conddiciones iniciales cero y entrada f</span>
+</pre><pre class="codeoutput">Respuesta a estado cero
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+2 X(s) + s X(s)
+
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+  s       2
+----- + -----
+s + 1   s + 1
+
+       s + 2
+-------------------
+ 3      2
+s  + 3 s  + 4 s + 2
+
+ 
+En el espacio de Laplace: 
+ 
+Y(s)=
+  1           s
+----- - ------------
+s + 1    2
+        s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) - exp(-t) (cos(t) - sin(t))
+
+</pre><img vspace="5" hspace="5" src="SySPrac06_03.png" alt=""> <h2 id="7">Respuesta total</h2><pre class="codeinput">disp(<span class="string">'Respuesta total'</span>)
+laplace2016a([2,2,1],[2,1],[1,0],[0],f,10) <span class="comment">%Condiciones iniciales y entrada f</span>
+</pre><pre class="codeoutput">Respuesta total
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 2
+
+2 X(s) + s X(s)
+
+                         2
+2 Y(s) - s + 2 s Y(s) + s  Y(s) - 2
+
+  s       2
+----- + -----
+s + 1   s + 1
+
+     2
+    s  + 4 s + 4
+-------------------
+ 3      2
+s  + 3 s  + 4 s + 2
+
+ 
+En el espacio de Laplace: 
+ 
+Y(s)=
+  1           2
+----- + ------------
+s + 1    2
+        s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+exp(-t) + 2 exp(-t) sin(t)
+
+</pre><img vspace="5" hspace="5" src="SySPrac06_04.png" alt=""> <h2 id="8">Respuesta a escal&oacute;n en condiciones cero</h2><pre class="codeinput">disp(<span class="string">'Respuesta al escal&oacute;n en estado cero'</span>)
+laplace2016a([2,2,1],[2,1],[0,0],[0],heaviside(t),10)
+</pre><pre class="codeoutput">Respuesta al escal&oacute;n en estado cero
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+2 X(s) + s X(s)
+
+                     2
+2 Y(s) + 2 s Y(s) + s  Y(s)
+
+2
+- + 1
+s
+
+     s + 2
+---------------
+ 3      2
+s  + 2 s  + 2 s
+
+ 
+En el espacio de Laplace: 
+ 
+Y(s)=
+1       s + 1
+- - ------------
+s    2
+    s  + 2 s + 2
+
+ 
+Aplicamos transformada inversa, asi la soluci&oacute;n es
+ 
+y(t)=
+1 - exp(-t) cos(t)
+
+</pre><img vspace="5" hspace="5" src="SySPrac06_05.png" alt=""> <h2 id="9">Graficas</h2><pre class="codeinput">hFig = figure(1);
+set(hFig, <span class="string">'Position'</span>, [0 0 900 900])
+axes1 = axes(<span class="string">'Parent'</span>,hFig,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16);
+t0=10;
+f=dirac(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,1)
+y=laplace2016woplots([2,2,1],[2,1],[0,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],<span class="string">'b'</span>)
+
+hold <span class="string">on</span>
+fplot(y,[0,t0],<span class="string">'r'</span>)
+hold <span class="string">on</span>
+
+legend(<span class="string">'Entrada x(t)'</span>,<span class="string">'Salida y(t)'</span>,<span class="string">'Location'</span>,<span class="string">'Best'</span>)
+title(<span class="string">'Respuesta al impulso'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16)
+grid <span class="string">on</span>
+
+syms <span class="string">t</span>;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,2)
+y=laplace2016woplots([2,2,1],[0,0],[1,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],<span class="string">'b'</span>)
+
+hold <span class="string">on</span>
+fplot(y,[0,t0],<span class="string">'r'</span>)
+hold <span class="string">on</span>
+legend(<span class="string">'Entrada x(t)'</span>,<span class="string">'Salida y(t)'</span>,<span class="string">'Location'</span>,<span class="string">'Best'</span>)
+title(<span class="string">'Entrada cero'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16)
+grid <span class="string">on</span>
+
+
+syms <span class="string">t</span>;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,3)
+y=laplace2016woplots([2,2,1],[2,1],[0,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],<span class="string">'b'</span>)
+
+hold <span class="string">on</span>
+fplot(y,[0,t0],<span class="string">'r'</span>)
+hold <span class="string">on</span>
+legend(<span class="string">'Entrada x(t)'</span>,<span class="string">'Salida y(t)'</span>,<span class="string">'Location'</span>,<span class="string">'Best'</span>)
+title(<span class="string">'Estado Cero'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16)
+grid <span class="string">on</span>
+
+syms <span class="string">t</span>;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,4)
+y=laplace2016woplots([2,2,1],[2,1],[1,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],<span class="string">'b'</span>)
+
+hold <span class="string">on</span>
+fplot(y,[0,t0],<span class="string">'r'</span>)
+hold <span class="string">on</span>
+legend(<span class="string">'Entrada x(t)'</span>,<span class="string">'Salida y(t)'</span>,<span class="string">'Location'</span>,<span class="string">'Best'</span>)
+title(<span class="string">'Respuesta total'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16)
+grid <span class="string">on</span>
+
+
+
+syms <span class="string">t</span>;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,5)
+y=laplace2016woplots([2,2,1],[2,1],[0,0],[0],heaviside(t),10);
+fplot(matlabFunction(f),[0, t0],<span class="string">'b'</span>)
+
+hold <span class="string">on</span>
+fplot(y,[0,t0],<span class="string">'r'</span>)
+hold <span class="string">on</span>
+legend(<span class="string">'Entrada x(t)'</span>,<span class="string">'Salida y(t)'</span>,<span class="string">'Location'</span>,<span class="string">'Best'</span>)
+title(<span class="string">'Usando escal&oacute;n unitario'</span>,<span class="string">'FontWeight'</span>,<span class="string">'bold'</span>,<span class="string">'FontSize'</span>,16)
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac06_06.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+% <html>
+% <IMG src="logoupii.png" width="55" height="50"/>
+% <h2> INSTITUTO POLITÉCNICO NACIONAL </h2>
+% <h2> UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS </h2>
+% <h2> SEÑALES Y SISTEMAS </h2>
+% <h1> Práctica 6 'Sistemas diferenciales' </h1>
+% <p> Profesor: Dr. Rafael Martinez Martinez </p>
+% <p> Integrantes del equipo: </p>
+% <ol>
+% <li>Gutierrez Montor Mauricio</li>
+% <li>Sánchez Moreno Mauricio Fabián</li>
+% <li>Vanegas López Eduardo</li>
+% </ol>
+% <p> Grupo 2TV1 </p>
+% </html>
+
+%%
+% Un sistema diferencial tiene un comportamiento descrito por la siguiente
+% ecuación diferencial:
+%
+% $$\ddot{y}(t)+2\dot{y}(t)+2y=\dot{x}(t)+2x $$
+%
+% Con $y(0^{-})=1$ y $\dot{y}(0^{-})=0$
+%   
+% $x(t)=e^{-t}u(t)$ y por lo tanto $x(0^{-})=0$
+%
+% * Muestra la función de transferencia del sistema
+% * Muestra la respuesta al impulso (simbólico, gráfica)
+% * Muestra la respuesta a entrada cero (simbólico, gráfica)
+% * Muestra la respuesta a estado cero (simbólico, gráfica)
+% * Muestra la respuesta total (simbólico, gráfica)
+% * La respuesta total al escalón con condiciones iniciales 0 (simbólico, gráfica)
+% * Usando subplot, depliega una figura con 5 gráficas
+
+%%
+syms t;
+f=exp(-1*t).*heaviside(t);
+
+
+%% Función de transferencia
+disp('Funcion de transferrencia')
+transferencia([2,2,1],[2,1])
+
+%% Respuesta al impulso
+disp('Respuesta al impulso')
+laplace2016a([2,2,1],[2,1],[0,0],[0],dirac(t),10) %Con condiciones iniciales cero y entrada dirac(t)
+
+%% Respuesta a entrada cero
+disp('Respuesta a entrada cero')
+laplace2016a([2,2,1],[0,0],[1,0],[0],f,10) %Con condiciones iniciales y entrada cero
+
+%% Respuesta a estado cero
+disp('Respuesta a estado cero')
+laplace2016a([2,2,1],[2,1],[0,0],[0],f,10) %Con conddiciones iniciales cero y entrada f
+
+%% Respuesta total
+disp('Respuesta total')
+laplace2016a([2,2,1],[2,1],[1,0],[0],f,10) %Condiciones iniciales y entrada f
+
+%% Respuesta a escalón en condiciones cero
+disp('Respuesta al escalón en estado cero')
+laplace2016a([2,2,1],[2,1],[0,0],[0],heaviside(t),10)
+
+%% Graficas
+
+hFig = figure(1);
+set(hFig, 'Position', [0 0 900 900])
+axes1 = axes('Parent',hFig,'FontWeight','bold','FontSize',16);
+t0=10;
+f=dirac(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,1)
+y=laplace2016woplots([2,2,1],[2,1],[0,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],'b')
+
+hold on
+fplot(y,[0,t0],'r')
+hold on
+
+legend('Entrada x(t)','Salida y(t)','Location','Best')
+title('Respuesta al impulso','FontWeight','bold','FontSize',16)
+grid on
+
+syms t;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,2)
+y=laplace2016woplots([2,2,1],[0,0],[1,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],'b')
+    
+hold on
+fplot(y,[0,t0],'r')
+hold on
+legend('Entrada x(t)','Salida y(t)','Location','Best')
+title('Entrada cero','FontWeight','bold','FontSize',16)
+grid on
+
+
+syms t;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,3)
+y=laplace2016woplots([2,2,1],[2,1],[0,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],'b')
+    
+hold on
+fplot(y,[0,t0],'r')
+hold on
+legend('Entrada x(t)','Salida y(t)','Location','Best')
+title('Estado Cero','FontWeight','bold','FontSize',16)
+grid on
+
+syms t;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,4)
+y=laplace2016woplots([2,2,1],[2,1],[1,0],[0],f,10);
+fplot(matlabFunction(f),[0, t0],'b')
+    
+hold on
+fplot(y,[0,t0],'r')
+hold on
+legend('Entrada x(t)','Salida y(t)','Location','Best')
+title('Respuesta total','FontWeight','bold','FontSize',16)
+grid on
+
+
+
+syms t;
+t0=10;
+f=exp(-1*t).*heaviside(t);
+tiempo=0:t0/100:t0;
+subplot(3,2,5)
+y=laplace2016woplots([2,2,1],[2,1],[0,0],[0],heaviside(t),10);
+fplot(matlabFunction(f),[0, t0],'b')
+    
+hold on
+fplot(y,[0,t0],'r')
+hold on
+legend('Entrada x(t)','Salida y(t)','Location','Best')
+title('Usando escalón unitario','FontWeight','bold','FontSize',16)
+grid on
+##### SOURCE END #####
+--></body></html>
